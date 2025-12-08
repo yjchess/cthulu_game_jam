@@ -5,7 +5,7 @@ enum Room_Projects{
 	STUDY_ART
 }
 
-enum Upgrade_View_Selections{
+enum Upgrade_Selection{
 	SKILLS,
 	CLOTHING,
 	DESK,
@@ -13,8 +13,19 @@ enum Upgrade_View_Selections{
 	DOOR
 }
 
-var upgrade_selection_buttons:ButtonGroup = preload("res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_view_radio_buttons.tres")
-var current_upgrade_view
+enum Upgrade_View_Areas{
+	CURRENT,
+	SKILLS
+}
+
+var upgrade_selection_buttons:ButtonGroup = preload("res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_selection.tres")
+var upgrade_selected_areas:ButtonGroup = preload("res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_area_selection.tres")
+var current_upgrade_view:Upgrade_Selection = Upgrade_Selection.SKILLS
+var current_upgrade_area_view:Upgrade_View_Areas = Upgrade_View_Areas.CURRENT
+
+signal skills_shop_view
+signal add_button_pressed
+signal project_selected
 
 func convert_enum_to_string(enum_name, enum_value):
 	var stringified:String = enum_name.keys()[enum_value].capitalize()
@@ -26,8 +37,14 @@ func _ready() -> void:
 		var item_name = convert_enum_to_string(Room_Projects, i)
 		%Current_Project.add_item(item_name, i)
 		
-	convert_enum_to_string(Room_Projects, Room_Projects.STUDY_CODE)
-
+	for button: Radio_Buttons in upgrade_selection_buttons.get_buttons():
+		button.pressed.connect(update_current_view_selection)
+	
+	for button: Radio_Buttons in upgrade_selected_areas.get_buttons():
+		button.pressed.connect(update_current_view_area_selected)
+	
+	for ui_skill:UI_Skill_View in get_tree().get_nodes_in_group("ui_skill"):
+		ui_skill.add_button_pressed.connect(self.add_button_pressed.emit)
 
 
 func get_current_project():
@@ -36,10 +53,12 @@ func get_current_project():
 func get_location():
 	return %Location.get_item_id(%Location.selected)
 
-func increment_stat_view(stat_index:int):
+func update_stat_view(stat_index:int, stat_value:int):
 	var skill_view:UI_Skill_View = get_stat_view(stat_index)
 	if skill_view != null:
-		skill_view.increment_value()
+		skill_view.set_value(stat_value)
+	
+	refresh_view()
 
 func get_stat_view(stat_index:int):
 	var ui_skills = get_tree().get_nodes_in_group("ui_skill")
@@ -50,10 +69,10 @@ func get_stat_view(stat_index:int):
 
 
 func _on_current_button_pressed() -> void:
-	update_current_view_selection()
+	
 	get_tree().call_group("upgrade_views_containers", "hide")
 	match current_upgrade_view:
-		Upgrade_View_Selections.SKILLS:
+		Upgrade_Selection.SKILLS:
 			%Skills_View_Container.show()
 			get_tree().call_group("ui_skill","current_view")
 	pass # Replace with function body.
@@ -61,14 +80,44 @@ func _on_current_button_pressed() -> void:
 func update_current_view_selection():
 	var button:Radio_Buttons = upgrade_selection_buttons.get_pressed_button()
 	current_upgrade_view = button.id
+	refresh_view()
 	return button.id
 
+func update_current_view_area_selected():
+	var button:Radio_Buttons = upgrade_selected_areas.get_pressed_button()
+	current_upgrade_area_view = button.id
+	refresh_view()
+	return button.id
 
 func _on_shop_button_pressed() -> void:
-	update_current_view_selection()
 	get_tree().call_group("upgrade_views_containers", "hide")
 	match current_upgrade_view:
-		Upgrade_View_Selections.SKILLS:
+		Upgrade_Selection.SKILLS:
 			%Skills_View_Container.show()
-			get_tree().call_group("ui_skill","shop_view")
+			emit_signal("skills_shop_view")
 	pass # Replace with function body.
+
+func display_skills_shop_view(addable_stats:Array = []):
+	
+	for stat_view:UI_Skill_View in get_tree().get_nodes_in_group("ui_skill"):
+		var can_add = false
+		
+		if stat_view.skill_index in addable_stats:
+			can_add = true
+		
+		stat_view.shop_view(can_add)
+
+
+func refresh_view():
+
+	match current_upgrade_view:
+		Upgrade_Selection.SKILLS:
+			if current_upgrade_area_view == Upgrade_View_Areas.CURRENT:
+				_on_current_button_pressed()
+			else:
+				_on_shop_button_pressed()
+		
+
+
+func _on_current_project_item_selected(index: int) -> void:
+	emit_signal("project_selected", index)

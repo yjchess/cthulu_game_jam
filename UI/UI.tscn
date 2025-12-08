@@ -3,12 +3,8 @@
 [ext_resource type="Script" path="res://UI/UI_Handler.gd" id="1_23snl"]
 [ext_resource type="PackedScene" uid="uid://6jms5gi13do0" path="res://UI/ui_components/stats_container/stats_container.tscn" id="1_esj76"]
 [ext_resource type="PackedScene" uid="uid://cccroup4hredi" path="res://UI/ui_components/upgrade_view_buttons/Upgrades_Selection_Button.tscn" id="2_1wcm0"]
-[ext_resource type="ButtonGroup" uid="uid://bk0vkycvfqbaw" path="res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_view_radio_buttons.tres" id="2_a6127"]
 [ext_resource type="PackedScene" uid="uid://d0bjmj7oachcm" path="res://UI/ui_components/skill_view_lines/skill_view_container.tscn" id="2_ibosk"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_gpkhp"]
-color = Color(0.498039, 0.498039, 0.498039, 1)
-thickness = 5
+[ext_resource type="ButtonGroup" uid="uid://bk0vkycvfqbaw" path="res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_area_selection.tres" id="4_udq3r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huhr"]
 bg_color = Color(0.266575, 0.266575, 0.266575, 1)
@@ -22,6 +18,10 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2map"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gpkhp"]
+color = Color(0.498039, 0.498039, 0.498039, 1)
+thickness = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfptn"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 0.65098)
@@ -53,188 +53,179 @@ thickness = 5
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_23snl")
 
-[node name="Upgrades_Container" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(100, 0)
+[node name="Upgrades" type="HBoxContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -110.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = 50.0
+offset_left = -40.0
+offset_bottom = 40.0
 grow_horizontal = 0
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Upgrades_Container"]
-layout_mode = 2
-text = "Upgrades"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Upgrades_Container"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_gpkhp")
-
-[node name="Upgrades_Selection_Button" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-button_pressed = true
-button_group = ExtResource("2_a6127")
-
-[node name="Upgrades_Selection_Button2" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-button_group = ExtResource("2_a6127")
-text = "Clothing"
-button_text = "Clothing"
-id = 1
-
-[node name="Upgrades_Selection_Button3" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-button_group = ExtResource("2_a6127")
-text = "Desk"
-button_text = "Desk"
-id = 1
-
-[node name="Upgrades_Selection_Button4" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-button_group = ExtResource("2_a6127")
-text = "Other"
-button_text = "Other"
-id = 1
-
-[node name="Upgrades_Selection_Button5" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-button_group = ExtResource("2_a6127")
-text = "Door"
-button_text = "Door"
-id = 1
-
-[node name="Upgrades_View" type="PanelContainer" parent="."]
+[node name="Upgrades_View" type="PanelContainer" parent="Upgrades"]
 clip_contents = true
-offset_left = 875.0
-offset_top = 6.0
-offset_right = 1036.0
-offset_bottom = 216.0
-size_flags_vertical = 0
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_3huhr")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Upgrades_View"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Upgrades/Upgrades_View"]
+clip_contents = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Upgrades_View/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Upgrades/Upgrades_View/ScrollContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Upgrades_View_Container" type="VBoxContainer" parent="Upgrades_View/ScrollContainer/MarginContainer"]
+[node name="Upgrades_View_Container" type="VBoxContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Upgrade_Title" type="Label" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
+[node name="Upgrade_Title" type="Label" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 15
 text = "SKILLS"
 horizontal_alignment = 1
 
-[node name="Upgrade_Areas" type="HBoxContainer" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
+[node name="Upgrade_Areas" type="HBoxContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Current_Button" type="Button" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas"]
+[node name="Upgrades_Selection_Button" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" instance=ExtResource("2_1wcm0")]
 layout_mode = 2
 size_flags_horizontal = 3
-toggle_mode = true
-button_group = ExtResource("2_a6127")
+button_pressed = true
+button_group = ExtResource("4_udq3r")
 text = "Current"
+button_text = "Current"
+button_group_of = 1
 
-[node name="Shop_Button" type="Button" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas"]
+[node name="Upgrades_Selection_Button2" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" instance=ExtResource("2_1wcm0")]
 layout_mode = 2
 size_flags_horizontal = 3
-toggle_mode = true
-button_group = ExtResource("2_a6127")
+button_group = ExtResource("4_udq3r")
 text = "Shop"
+button_text = "Shop"
+id = 1
+button_group_of = 1
 
-[node name="Skills_View_Container" type="PanelContainer" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
+[node name="Skills_View_Container" type="PanelContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
 unique_name_in_owner = true
-clip_contents = true
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_m2map")
 
-[node name="Skills_Views" type="VBoxContainer" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container"]
+[node name="Skills_Views" type="VBoxContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HSeparator4" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+[node name="HSeparator4" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
 layout_mode = 2
 
-[node name="Skill_View_Container" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+[node name="Skill_View_Container" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
 layout_mode = 2
 skill_title = "Coding:"
 has_add = false
-spends_coding = true
-spends_art = false
+skill_title_tooltip = "Coding points increase rate of learning coding. Used points still count"
 
-[node name="Skill_View_Container2" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+[node name="Skill_View_Container2" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
 layout_mode = 2
 skill_title = "Art:"
 skill_index = 1
 has_add = false
-spends_coding = true
-spends_art = false
+skill_title_tooltip = "Art points increase rate of learning Art. Used points still count"
 
-[node name="HSeparator" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+[node name="HSeparator" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
 layout_mode = 2
 
-[node name="Skill_View_Container3" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+[node name="Skill_View_Container3" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
 layout_mode = 2
 skill_title = "Auto-study:"
 skill_index = 2
-has_add = true
-spends_coding = true
-spends_art = false
+skill_title_tooltip = "Spend 1 Coding + 1 Art to reduce auto_study time"
 
-[node name="HSeparator2" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+[node name="HSeparator2" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
 layout_mode = 2
 
-[node name="Skill_View_Container4" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+[node name="Skill_View_Container4" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
 layout_mode = 2
 skill_title = "Web-dev:"
 skill_index = 3
-has_add = true
-spends_coding = true
-spends_art = false
+skill_title_tooltip = "Speeds up projects requiring web development"
 
-[node name="Skill_View_Container5" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+[node name="Skill_View_Container5" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
 layout_mode = 2
 skill_title = "Game-dev:"
 skill_index = 4
-has_add = true
-spends_coding = true
-spends_art = false
+skill_title_tooltip = "Speeds up projects requiring game development"
 
-[node name="Skill_View_Container6" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+[node name="Skill_View_Container6" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
 layout_mode = 2
 skill_title = "Digital Art:"
 skill_index = 5
-has_add = true
-spends_coding = true
-spends_art = false
+skill_title_tooltip = "Speeds up projects requiring digital art"
 
-[node name="Skill_View_Container7" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+[node name="Skill_View_Container7" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
 layout_mode = 2
 skill_title = "Trad. Art:"
 skill_index = 6
-has_add = true
-spends_coding = true
-spends_art = false
+skill_title_tooltip = "Speeds up projects requiring traditional art"
 
-[node name="HSeparator3" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+[node name="HSeparator3" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
 layout_mode = 2
+
+[node name="Other_Skills" type="Button" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+layout_mode = 2
+text = "Other"
+
+[node name="Upgrades_Container" type="VBoxContainer" parent="Upgrades"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Upgrades/Upgrades_Container"]
+layout_mode = 2
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Upgrades/Upgrades_Container"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_gpkhp")
+
+[node name="Upgrades_Selection_Button" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+button_pressed = true
+
+[node name="Upgrades_Selection_Button2" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+text = "Clothing"
+button_text = "Clothing"
+id = 1
+
+[node name="Upgrades_Selection_Button3" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+text = "Desk"
+button_text = "Desk"
+id = 1
+
+[node name="Upgrades_Selection_Button4" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+text = "Other"
+button_text = "Other"
+id = 1
+
+[node name="Upgrades_Selection_Button5" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+text = "Door"
+button_text = "Door"
+id = 1
 
 [node name="EventContainer" type="VBoxContainer" parent="."]
 visible = false
@@ -324,10 +315,8 @@ size_flags_horizontal = 10
 
 [node name="StatsContainer" parent="Score_Containers" instance=ExtResource("1_esj76")]
 layout_mode = 2
+id = null
 label = "Progress:"
-
-[node name="Label" parent="Score_Containers/StatsContainer" index="0"]
-text = "Progress:"
 
 [node name="Stats_Container" type="MarginContainer" parent="."]
 anchors_preset = 2
@@ -350,18 +339,22 @@ layout_mode = 2
 
 [node name="StatsContainer2" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
 layout_mode = 2
+id = 1
 label = "Temp."
 
 [node name="StatsContainer3" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
 layout_mode = 2
+id = 2
 label = "Comfort"
 
 [node name="StatsContainer4" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
 layout_mode = 2
+id = 3
 label = "Mental HP"
 
 [node name="StatsContainer5" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
 layout_mode = 2
+id = 4
 label = "Physical HP"
 
 [node name="Data_Container" type="VBoxContainer" parent="."]
@@ -438,7 +431,6 @@ popup/item_1/id = 1
 popup/item_2/text = "Bed"
 popup/item_2/id = 2
 
-[connection signal="pressed" from="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Current_Button" to="." method="_on_current_button_pressed"]
-[connection signal="pressed" from="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Shop_Button" to="." method="_on_shop_button_pressed"]
-
-[editable path="Score_Containers/StatsContainer"]
+[connection signal="pressed" from="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Upgrades_Selection_Button" to="." method="_on_current_button_pressed"]
+[connection signal="pressed" from="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Upgrades_Selection_Button2" to="." method="_on_shop_button_pressed"]
+[connection signal="item_selected" from="Score_Containers/HBoxContainer2/Current_Project" to="." method="_on_current_project_item_selected"]

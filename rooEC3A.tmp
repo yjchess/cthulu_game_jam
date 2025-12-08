@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://game_manager.gd" id="1_w3jtd"]
 [ext_resource type="PackedScene" uid="uid://b8o4fgjtxh30b" path="res://UI/UI.tscn" id="2_1k4ju"]
 [ext_resource type="Texture2D" uid="uid://cfmwjxnw2vos0" path="res://assets/chair.png" id="2_et4v2"]
-[ext_resource type="Script" path="res://Time_Handler.gd" id="6_mx53e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbagv"]
 bg_color = Color(0.573158, 0.390079, 0.40651, 1)
@@ -18,6 +17,8 @@ size = Vector2(27.6667, 22.1667)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_to7wh"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_u4sm1"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_w3jtd")
@@ -90,34 +91,11 @@ texture = ExtResource("1_kwckf")
 
 [node name="UI" parent="." instance=ExtResource("2_1k4ju")]
 
-[node name="ScrollContainer" parent="UI/Upgrades/Upgrades_View" index="0"]
-clip_contents = true
+[node name="Current_Button" parent="UI/Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" index="0"]
+button_group = SubResource("ButtonGroup_u4sm1")
 
-[node name="Skill_View_Container3" parent="UI/Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="4"]
-skill_title_tooltip = "Spend 1 Coding & 1 Art to reduce auto_study time"
-
-[node name="Label" parent="UI/Score_Containers/StatsContainer" index="0"]
-text = "Progress:"
-
-[node name="StatsContainer2" parent="UI/Stats_Container/VBoxContainer" index="1"]
-id = null
-
-[node name="StatsContainer3" parent="UI/Stats_Container/VBoxContainer" index="2"]
-id = null
-
-[node name="StatsContainer4" parent="UI/Stats_Container/VBoxContainer" index="3"]
-id = null
-
-[node name="StatsContainer5" parent="UI/Stats_Container/VBoxContainer" index="4"]
-id = null
-
-[node name="Time_Handler" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("6_mx53e")
-
-[node name="auto_study_timer" type="Timer" parent="Time_Handler"]
-unique_name_in_owner = true
-wait_time = 5.5
+[node name="Shop_Button" parent="UI/Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" index="1"]
+button_group = SubResource("ButtonGroup_u4sm1")
 
 [connection signal="input_event" from="Room/PanelContainer2/Desk/keyboard_area" to="." method="_on_keyboard_area_input_event"]
 

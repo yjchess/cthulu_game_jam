@@ -13,44 +13,39 @@ class_name UI_Skill_View extends HBoxContainer
 
 @export var skill_index:int = 0
 @export var has_add:bool = true
-@export var spends_coding:bool = true
-@export var spends_art: bool = false
+@export var skill_title_tooltip:String = "Tooltip"
+
 
 enum states {
 	CURRENT,
 	SHOP
 }
 
+signal change_view
+signal add_button_pressed
+
 func _ready():
 	current_view()
+	%skill_title.tooltip_text = skill_title_tooltip
 
-func increment_value(amount:int = 1):
-	skill_value = skill_value + amount
-
+func set_value(amount:int):
+	skill_value = amount
+	
 func current_view():
 	%Add_Button.hide()
 
-func shop_view():
-	if has_add:
-		%Add_Button.show()
-		if can_add():
-			%Add_Button.disabled = false
-		else:
-			%Add_Button.disabled = true
-
-func can_add():
-	if spends_coding and Stats_Handler.unspent_coding_levels > 0:
-		return true
+func shop_view(can_add:bool = false):
+	if not has_add:
+		return
 	
-	if spends_art and Stats_Handler.unspent_art_levels > 0:
-		return true
-		
-	return false
+	%Add_Button.show()
+	if can_add:
+		%Add_Button.disabled = false
+	else:
+		%Add_Button.disabled = true
+
 
 
 func _on_add_button_pressed() -> void:
-	if not can_add():
-		return
-		
-	if spends_coding and Stats_Handler.unspent_coding_levels > 0:
-		Stats_Handler.unspent_coding_levels 
+	emit_signal("add_button_pressed", skill_index)
+	
