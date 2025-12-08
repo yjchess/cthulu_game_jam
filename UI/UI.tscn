@@ -1,0 +1,444 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8o4fgjtxh30b"]
+
+[ext_resource type="Script" path="res://UI/UI_Handler.gd" id="1_23snl"]
+[ext_resource type="PackedScene" uid="uid://6jms5gi13do0" path="res://UI/ui_components/stats_container/stats_container.tscn" id="1_esj76"]
+[ext_resource type="PackedScene" uid="uid://cccroup4hredi" path="res://UI/ui_components/upgrade_view_buttons/Upgrades_Selection_Button.tscn" id="2_1wcm0"]
+[ext_resource type="ButtonGroup" uid="uid://bk0vkycvfqbaw" path="res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_view_radio_buttons.tres" id="2_a6127"]
+[ext_resource type="PackedScene" uid="uid://d0bjmj7oachcm" path="res://UI/ui_components/skill_view_lines/skill_view_container.tscn" id="2_ibosk"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gpkhp"]
+color = Color(0.498039, 0.498039, 0.498039, 1)
+thickness = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huhr"]
+bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2map"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfptn"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 0.65098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0ibf"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_86uly"]
+thickness = 5
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_23snl")
+
+[node name="Upgrades_Container" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Upgrades_Container"]
+layout_mode = 2
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Upgrades_Container"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_gpkhp")
+
+[node name="Upgrades_Selection_Button" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+button_pressed = true
+button_group = ExtResource("2_a6127")
+
+[node name="Upgrades_Selection_Button2" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+button_group = ExtResource("2_a6127")
+text = "Clothing"
+button_text = "Clothing"
+id = 1
+
+[node name="Upgrades_Selection_Button3" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+button_group = ExtResource("2_a6127")
+text = "Desk"
+button_text = "Desk"
+id = 1
+
+[node name="Upgrades_Selection_Button4" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+button_group = ExtResource("2_a6127")
+text = "Other"
+button_text = "Other"
+id = 1
+
+[node name="Upgrades_Selection_Button5" parent="Upgrades_Container" instance=ExtResource("2_1wcm0")]
+layout_mode = 2
+button_group = ExtResource("2_a6127")
+text = "Door"
+button_text = "Door"
+id = 1
+
+[node name="Upgrades_View" type="PanelContainer" parent="."]
+clip_contents = true
+offset_left = 875.0
+offset_top = 6.0
+offset_right = 1036.0
+offset_bottom = 216.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3huhr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Upgrades_View"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Upgrades_View/ScrollContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Upgrades_View_Container" type="VBoxContainer" parent="Upgrades_View/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Upgrade_Title" type="Label" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "SKILLS"
+horizontal_alignment = 1
+
+[node name="Upgrade_Areas" type="HBoxContainer" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Current_Button" type="Button" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("2_a6127")
+text = "Current"
+
+[node name="Shop_Button" type="Button" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("2_a6127")
+text = "Shop"
+
+[node name="Skills_View_Container" type="PanelContainer" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m2map")
+
+[node name="Skills_Views" type="VBoxContainer" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HSeparator4" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+layout_mode = 2
+
+[node name="Skill_View_Container" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+layout_mode = 2
+skill_title = "Coding:"
+has_add = false
+spends_coding = true
+spends_art = false
+
+[node name="Skill_View_Container2" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+layout_mode = 2
+skill_title = "Art:"
+skill_index = 1
+has_add = false
+spends_coding = true
+spends_art = false
+
+[node name="HSeparator" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+layout_mode = 2
+
+[node name="Skill_View_Container3" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+layout_mode = 2
+skill_title = "Auto-study:"
+skill_index = 2
+has_add = true
+spends_coding = true
+spends_art = false
+
+[node name="HSeparator2" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+layout_mode = 2
+
+[node name="Skill_View_Container4" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+layout_mode = 2
+skill_title = "Web-dev:"
+skill_index = 3
+has_add = true
+spends_coding = true
+spends_art = false
+
+[node name="Skill_View_Container5" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+layout_mode = 2
+skill_title = "Game-dev:"
+skill_index = 4
+has_add = true
+spends_coding = true
+spends_art = false
+
+[node name="Skill_View_Container6" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+layout_mode = 2
+skill_title = "Digital Art:"
+skill_index = 5
+has_add = true
+spends_coding = true
+spends_art = false
+
+[node name="Skill_View_Container7" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
+layout_mode = 2
+skill_title = "Trad. Art:"
+skill_index = 6
+has_add = true
+spends_coding = true
+spends_art = false
+
+[node name="HSeparator3" type="HSeparator" parent="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
+layout_mode = 2
+
+[node name="EventContainer" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(600, 70)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="EventContainer"]
+layout_mode = 2
+text = "Events:"
+
+[node name="PanelContainer" type="PanelContainer" parent="EventContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kfptn")
+
+[node name="Events Log" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -215.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r0ibf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Events Log"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Events Log/VBoxContainer"]
+layout_mode = 2
+text = "Events Log"
+
+[node name="HSeparator" type="HSeparator" parent="Events Log/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_86uly")
+
+[node name="Score_Containers" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Score_Containers"]
+layout_mode = 2
+
+[node name="Money_Title" type="Label" parent="Score_Containers/HBoxContainer"]
+layout_mode = 2
+text = "Money:
+"
+horizontal_alignment = 1
+
+[node name="Money_Value" type="Label" parent="Score_Containers/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "£0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Score_Containers"]
+layout_mode = 2
+
+[node name="Money_Title" type="Label" parent="Score_Containers/HBoxContainer2"]
+layout_mode = 2
+text = "Project:
+"
+horizontal_alignment = 1
+
+[node name="Current_Project" type="OptionButton" parent="Score_Containers/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="StatsContainer" parent="Score_Containers" instance=ExtResource("1_esj76")]
+layout_mode = 2
+label = "Progress:"
+
+[node name="Label" parent="Score_Containers/StatsContainer" index="0"]
+text = "Progress:"
+
+[node name="Stats_Container" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -139.0
+offset_right = 200.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats_Container"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StatsContainer" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
+layout_mode = 2
+
+[node name="StatsContainer2" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
+layout_mode = 2
+label = "Temp."
+
+[node name="StatsContainer3" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
+layout_mode = 2
+label = "Comfort"
+
+[node name="StatsContainer4" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
+layout_mode = 2
+label = "Mental HP"
+
+[node name="StatsContainer5" parent="Stats_Container/VBoxContainer" instance=ExtResource("1_esj76")]
+layout_mode = 2
+label = "Physical HP"
+
+[node name="Data_Container" type="VBoxContainer" parent="."]
+offset_right = 200.0
+offset_bottom = 54.0
+theme_override_constants/separation = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Data_Container"]
+layout_mode = 2
+
+[node name="Year_Title" type="Label" parent="Data_Container/HBoxContainer"]
+layout_mode = 2
+text = "Year:
+"
+horizontal_alignment = 1
+
+[node name="Year_Value" type="Label" parent="Data_Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Data_Container"]
+layout_mode = 2
+
+[node name="Season_Title" type="Label" parent="Data_Container/HBoxContainer2"]
+layout_mode = 2
+text = "Season:
+"
+horizontal_alignment = 1
+
+[node name="Season_Value" type="Label" parent="Data_Container/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Spring"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Data_Container"]
+layout_mode = 2
+
+[node name="Day_Title" type="Label" parent="Data_Container/HBoxContainer3"]
+layout_mode = 2
+text = "Day:
+"
+horizontal_alignment = 1
+
+[node name="Day_Value" type="Label" parent="Data_Container/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1/28"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Data_Container"]
+layout_mode = 2
+
+[node name="Time_Title" type="Label" parent="Data_Container/HBoxContainer4"]
+layout_mode = 2
+text = "Time:
+"
+horizontal_alignment = 1
+
+[node name="Time_Value" type="Label" parent="Data_Container/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "8 am"
+
+[node name="Location" type="OptionButton" parent="Data_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+selected = 0
+item_count = 3
+popup/item_0/text = "Room"
+popup/item_1/text = "Gym"
+popup/item_1/id = 1
+popup/item_2/text = "Bed"
+popup/item_2/id = 2
+
+[connection signal="pressed" from="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Current_Button" to="." method="_on_current_button_pressed"]
+[connection signal="pressed" from="Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Shop_Button" to="." method="_on_shop_button_pressed"]
+
+[editable path="Score_Containers/StatsContainer"]

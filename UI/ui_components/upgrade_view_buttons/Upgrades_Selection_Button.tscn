@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://cccroup4hredi"]
+
+[ext_resource type="Theme" uid="uid://cp5p7mb60ijpf" path="res://UI/ui_components/upgrade_view_buttons/ui_radio_buttons.tres" id="1_7clxv"]
+[ext_resource type="ButtonGroup" uid="uid://dkn1xqohbusum" path="res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_selection_view_radio_button.tres" id="2_wuepn"]
+[ext_resource type="Script" path="res://UI/ui_components/upgrade_view_buttons/upgrades_selection_button.gd" id="3_plep4"]
+
+[node name="Upgrades_Selection_Button" type="Button"]
+theme = ExtResource("1_7clxv")
+toggle_mode = true
+button_group = ExtResource("2_wuepn")
+text = "Skills"
+script = ExtResource("3_plep4")

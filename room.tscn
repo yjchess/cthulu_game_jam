@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfpfq43rqh1is"]
+
+[ext_resource type="Texture2D" uid="uid://3oa8bxq10kvi" path="res://assets/desk.png" id="1_2epbx"]
+[ext_resource type="Texture2D" uid="uid://o4bo4ltm85hs" path="res://assets/door.png" id="1_kwckf"]
+[ext_resource type="Script" path="res://game_manager.gd" id="1_w3jtd"]
+[ext_resource type="PackedScene" uid="uid://b8o4fgjtxh30b" path="res://UI/UI.tscn" id="2_1k4ju"]
+[ext_resource type="Texture2D" uid="uid://cfmwjxnw2vos0" path="res://assets/chair.png" id="2_et4v2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbagv"]
+bg_color = Color(0.573158, 0.390079, 0.40651, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqkrj"]
+bg_color = Color(0.528427, 0.379636, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rohnk"]
+size = Vector2(27.6667, 22.1667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_to7wh"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_w3jtd")
+
+[node name="Room" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1200, 700)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Room"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbagv")
+
+[node name="PanelContainer3" type="PanelContainer" parent="Room"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_pbagv")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Room"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_nqkrj")
+
+[node name="Desk" type="Sprite2D" parent="Room/PanelContainer2"]
+position = Vector2(598, -103)
+scale = Vector2(6, 6)
+texture = ExtResource("1_2epbx")
+
+[node name="keyboard_area" type="Area2D" parent="Room/PanelContainer2/Desk"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/PanelContainer2/Desk/keyboard_area"]
+position = Vector2(0.333328, -4.41666)
+shape = SubResource("RectangleShape2D_rohnk")
+
+[node name="Chair" type="Sprite2D" parent="Room/PanelContainer2"]
+position = Vector2(602, 48)
+scale = Vector2(4, 4)
+texture = ExtResource("2_et4v2")
+
+[node name="Outside_Room" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(1200, 650)
+offset_right = 1100.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_to7wh")
+
+[node name="CenterContainer" type="CenterContainer" parent="Outside_Room"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Door" type="Sprite2D" parent="Outside_Room/CenterContainer"]
+position = Vector2(13, -90)
+scale = Vector2(4, 4)
+texture = ExtResource("1_kwckf")
+
+[node name="UI" parent="." instance=ExtResource("2_1k4ju")]
+
+[node name="Skill_View_Container" parent="UI/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="1"]
+has_add = null
+spends_coding = null
+spends_art = null
+
+[node name="Skill_View_Container2" parent="UI/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="2"]
+has_add = null
+spends_coding = null
+spends_art = null
+
+[node name="Skill_View_Container3" parent="UI/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="4"]
+has_add = null
+spends_coding = null
+spends_art = null
+
+[node name="Skill_View_Container4" parent="UI/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="6"]
+has_add = null
+spends_coding = null
+spends_art = null
+
+[node name="Skill_View_Container5" parent="UI/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="7"]
+has_add = null
+spends_coding = null
+spends_art = null
+
+[node name="Skill_View_Container6" parent="UI/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="8"]
+has_add = null
+spends_coding = null
+spends_art = null
+
+[node name="Skill_View_Container7" parent="UI/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" index="9"]
+has_add = null
+spends_coding = null
+spends_art = null
+
+[connection signal="input_event" from="Room/PanelContainer2/Desk/keyboard_area" to="." method="_on_keyboard_area_input_event"]
+
+[editable path="UI"]
+[editable path="UI/Score_Containers/StatsContainer"]

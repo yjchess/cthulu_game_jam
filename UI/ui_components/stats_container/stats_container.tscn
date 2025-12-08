@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://6jms5gi13do0"]
+
+[ext_resource type="Script" path="res://UI/ui_components/stats_container/stats_container.gd" id="1_8ydm5"]
+
+[node name="StatsContainer" type="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+script = ExtResource("1_8ydm5")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Energy"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
