@@ -1,10 +1,5 @@
 class_name UI_Handler extends CanvasLayer
 
-enum Room_Projects{
-	STUDY_CODE,
-	STUDY_ART
-}
-
 enum Upgrade_Selection{
 	SKILLS,
 	CLOTHING,
@@ -33,10 +28,8 @@ func convert_enum_to_string(enum_name, enum_value):
 			
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in len(Room_Projects.values()):
-		var item_name = convert_enum_to_string(Room_Projects, i)
-		%Current_Project.add_item(item_name, i)
-		
+	%Money_Value.text = "£"+ str(Stats_Handler.money)
+	
 	for button: Radio_Buttons in upgrade_selection_buttons.get_buttons():
 		button.pressed.connect(update_current_view_selection)
 	
@@ -46,8 +39,13 @@ func _ready() -> void:
 	for ui_skill:UI_Skill_View in get_tree().get_nodes_in_group("ui_skill"):
 		ui_skill.add_button_pressed.connect(self.add_button_pressed.emit)
 
+func populate_projects(projects: Array[Progress_Handler.Project_Progress]):
+	for project:Progress_Handler.Project_Progress in projects:
+		var item_name = convert_enum_to_string(Progress_Handler.Projects, project.project_id)
+		%Current_Project.add_item(item_name, project.project_id)
+		%Current_Project.set_item_disabled(project.project_id, !project.enabled)
 
-func get_current_project():
+func get_current_project() -> int:
 	return %Current_Project.get_item_id(%Current_Project.selected)
 
 func get_location():
@@ -121,3 +119,10 @@ func refresh_view():
 
 func _on_current_project_item_selected(index: int) -> void:
 	emit_signal("project_selected", index)
+
+func process_second(time_text:String):
+	%Time_Value.text = time_text
+
+func unlock_project(project_id:int):
+	print("HI")
+	%Current_Project.set_item_disabled(project_id, false)

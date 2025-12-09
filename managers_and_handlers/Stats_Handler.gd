@@ -1,8 +1,18 @@
 class_name Stats_Handler extends Node
 
-static var unspent_coding_levels: int = 0
+var unspent_coding_levels: int = 0
 static var unspent_art_levels: int = 0
 static var auto_study_level: int = 0
+
+signal money_changed
+static var project_points: int = 0
+var money:float = 0.00:
+	set(v):
+		money = v
+		money_changed.emit()
+		
+
+static var benefits_per_day:float = 15.00
 
 enum LEVEL_STATS{
 	CODING,
@@ -108,14 +118,17 @@ static var modifier_stats:Array[Modifier_Stat] = [
 	Modifier_Stat.new(MODIFIER_STATS.TEMPERATURE, "Temperature", 100.0, [], [], [30, 70]),
 	Modifier_Stat.new(MODIFIER_STATS.COMFORT, "Comfort", 80.0),
 	Modifier_Stat.new(MODIFIER_STATS.MENTAL_HP, "Mental HP", 80.0),
-	Modifier_Stat.new(MODIFIER_STATS.PHYSICAL_HP, "Physical HP", 50.0)
+	Modifier_Stat.new(MODIFIER_STATS.PHYSICAL_HP, "Physical HP", 70.0)
 ]
 
-func get_stat(stat_id: LEVEL_STATS):
+func get_stat(stat_id: LEVEL_STATS) -> Stat:
 	for stat:Stat in stats:
 		if stat.id == stat_id:
 			return stat
 	return null
+
+func get_stats():
+	return stats
 
 static func get_modifier_stat(stat_id: MODIFIER_STATS):
 	for stat:Modifier_Stat in modifier_stats:
@@ -133,9 +146,10 @@ func increment_stat(stat_id:int, amount:int = 1, is_free:bool = false):
 	var stat:Stat = get_stat(stat_id)
 	if not stat.can_add(is_free): return
 	stat.add(is_free, amount)
-	if stat.id == LEVEL_STATS.AUTO_STUDY:
-		print("AUTO_STUDY LEVEL CHANGED ", auto_study_level)
-		emit_signal("auto_study_level_changed", auto_study_level)
+	
+	match stat.id:
+		LEVEL_STATS.AUTO_STUDY: emit_signal("auto_study_level_changed", auto_study_level)
+		
 	emit_signal("stat_change", stat_id, stat.levels)
 
 
@@ -148,3 +162,7 @@ func get_enabled_add_stats():
 	
 	return enabled_stats_ids
 		
+
+func handle_day_ended():
+	money += benefits_per_day
+	

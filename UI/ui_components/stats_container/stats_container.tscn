@@ -1,14 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://6jms5gi13do0"]
+[gd_scene load_steps=5 format=3 uid="uid://6jms5gi13do0"]
 
 [ext_resource type="Script" path="res://UI/ui_components/stats_container/stats_container.gd" id="1_8ydm5"]
+
+[sub_resource type="Theme" id="Theme_tvfpe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_doty4"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0980392, 0.392157, 0.196078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3klt"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.27451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
 
 [node name="StatsContainer" type="HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 script = ExtResource("1_8ydm5")
-id = null
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 layout_mode = 2
+tooltip_text = "<30% = x0.7, <20% = x0.5"
+mouse_filter = 1
 text = "Energy"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -16,3 +51,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+theme = SubResource("Theme_tvfpe")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_doty4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h3klt")
