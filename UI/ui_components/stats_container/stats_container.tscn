@@ -35,7 +35,7 @@ corner_radius_top_left = 4
 corner_radius_bottom_left = 4
 corner_detail = 6
 
-[node name="StatsContainer" type="HBoxContainer"]
+[node name="StatsContainer" type="HBoxContainer" groups=["Modifier_Stat_Display"]]
 custom_minimum_size = Vector2(200, 0)
 script = ExtResource("1_8ydm5")
 

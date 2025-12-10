@@ -8,6 +8,7 @@ func _ready() -> void:
 	stats_manager._ready()
 	progress_handler._ready()
 	ui_handler.populate_projects(progress_handler.get_projects())
+	ui_handler.populate_modifier_stat_container(stats_manager.get_modifier_stats())
 	progress_handler.progress_bar = $UI/Score_Containers/StatsContainer/ProgressBar
 	progress_handler.finished_progress.connect(progress_finished)
 	progress_handler.project_enabled.connect(ui_handler.unlock_project)

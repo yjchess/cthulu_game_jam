@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 
 ui_skill=""
 upgrade_views_containers="Contains the view for selected upgrades"
+Modifier_Stat_Display=""
 
 [rendering]
 

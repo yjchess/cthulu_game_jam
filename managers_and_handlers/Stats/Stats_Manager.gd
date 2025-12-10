@@ -24,3 +24,6 @@ func get_enabled_add_stats():
 
 func get_levellable_stat(stat_id:int):
 	return levellable_stat_handler.get_levellable_stat(stat_id)
+
+func get_modifier_stats() -> Array[Modifier_Stat]:
+	return modifier_stat_handler.modifier_stats

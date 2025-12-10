@@ -93,7 +93,6 @@ func _on_shop_button_pressed() -> void:
 		Upgrade_Selection.SKILLS:
 			%Skills_View_Container.show()
 			emit_signal("skills_shop_view")
-	pass # Replace with function body.
 
 func display_skills_shop_view(addable_stats:Array = []):
 	
@@ -124,5 +123,14 @@ func process_second(time_text:String):
 	%Time_Value.text = time_text
 
 func unlock_project(project_id:int):
-	print("HI")
 	%Current_Project.set_item_disabled(project_id, false)
+
+func populate_modifier_stat_container(modifier_stats:Array[Modifier_Stat]):
+	var modifier_stat_containers = get_tree().get_nodes_in_group("Modifier_Stat_Display")
+	for container:Modifier_Stat_View in modifier_stat_containers:
+		var corresponding_stat:Modifier_Stat
+		for stat:Modifier_Stat in modifier_stats:
+			if stat.id == container.id:
+				corresponding_stat = stat
+				break
+		container.progress_bar.value = corresponding_stat.value

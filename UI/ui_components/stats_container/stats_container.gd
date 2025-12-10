@@ -1,4 +1,4 @@
-extends HBoxContainer 
+class_name Modifier_Stat_View extends HBoxContainer 
 
 @export var id:Enums.MODIFIER_STATS = Enums.MODIFIER_STATS.ENERGY
 @export var label:String = "Energy"
@@ -15,7 +15,3 @@ func _ready() -> void:
 	#	progress_bar.value = data.value
 	
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
