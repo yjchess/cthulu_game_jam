@@ -25,10 +25,10 @@ signal project_selected
 func convert_enum_to_string(enum_name, enum_value):
 	var stringified:String = enum_name.keys()[enum_value].capitalize()
 	return stringified
-			
-# Called when the node enters the scene tree for the first time.
+	
+
 func _ready() -> void:
-	%Money_Value.text = "£"+ str(Stats_Handler.money)
+	#%Money_Value.text = "£"+ str(Stats_Handler.money)
 	
 	for button: Radio_Buttons in upgrade_selection_buttons.get_buttons():
 		button.pressed.connect(update_current_view_selection)

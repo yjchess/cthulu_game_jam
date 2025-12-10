@@ -1,0 +1,19 @@
+class_name Enums extends Node
+
+enum LEVEL_STATS{
+	CODING,
+	ART,
+	AUTO_STUDY,
+	WEB_DEV,
+	GAME_DEV,
+	DIG_ART,
+	TRAD_ART
+}
+
+enum MODIFIER_STATS{
+	ENERGY,
+	TEMPERATURE,
+	COMFORT,
+	MENTAL_HP,
+	PHYSICAL_HP,
+}

@@ -10,8 +10,6 @@ enum button_groups{
 	UPGRADE_AREA_SELECTION
 }
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	text = button_text
 	match button_group_of:
@@ -19,9 +17,3 @@ func _ready() -> void:
 			button_group = preload ("res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_selection.tres")
 		button_groups.UPGRADE_AREA_SELECTION:
 			button_group = preload("res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_area_selection.tres")
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
