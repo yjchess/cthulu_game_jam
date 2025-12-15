@@ -18,3 +18,6 @@ func get_modifier_stat(stat_id: Enums.MODIFIER_STATS):
 		if stat.id == stat_id:
 			return stat
 	return null
+
+func get_modifier_stats():
+	return modifier_stats

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfwfx6b0qey6m"]
+
+[ext_resource type="Theme" uid="uid://bupgh13b4cxcv" path="res://main_label_theme.tres" id="1_qh6cq"]
+
+[node name="Sub_Title" type="Label"]
+custom_minimum_size = Vector2(0, 26)
+offset_right = 36.0
+offset_bottom = 26.0
+theme = ExtResource("1_qh6cq")
+theme_type_variation = &"HeaderMedium"
+text = "Head"
+vertical_alignment = 1

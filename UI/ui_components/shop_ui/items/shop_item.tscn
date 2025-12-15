@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr4tc184ol351"]
+
+[ext_resource type="Theme" uid="uid://bupgh13b4cxcv" path="res://main_label_theme.tres" id="1_b5uyx"]
+[ext_resource type="Script" path="res://UI/ui_components/shop_ui/items/shop_item.gd" id="1_rkd3q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1yw0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtm2w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 1
+border_width_bottom = 1
+
+[node name="Shop_Item" type="HBoxContainer"]
+custom_minimum_size = Vector2(136, 0)
+theme_override_constants/separation = 0
+script = ExtResource("1_rkd3q")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_c1yw0")
+
+[node name="Item_old" type="Label" parent="PanelContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_b5uyx")
+theme_type_variation = &"HeaderSmall"
+text = "Beanie"
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="Item" type="RichTextLabel" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_b5uyx")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Beanie"
+fit_content = true
+autowrap_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(37, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_mtm2w")
+
+[node name="Price" type="Label" parent="PanelContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_b5uyx")
+theme_type_variation = &"HeaderSmall"
+text = "£6"
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c1yw0")
+
+[node name="Buy_Button" type="Button" parent="PanelContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Buy"
+
+[connection signal="pressed" from="PanelContainer3/Buy_Button" to="." method="_on_buy_button_pressed"]

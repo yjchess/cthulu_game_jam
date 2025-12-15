@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf2o6px4obbsd"]
+
+[ext_resource type="Theme" uid="uid://bupgh13b4cxcv" path="res://main_label_theme.tres" id="1_mbpkk"]
+
+[node name="Event_Log" type="Label"]
+theme = ExtResource("1_mbpkk")
+theme_type_variation = &"HeaderMedium"
+theme_override_constants/line_spacing = 0
+text = "Placeholder Text"
+autowrap_mode = 2

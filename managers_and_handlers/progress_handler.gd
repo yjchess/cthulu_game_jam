@@ -17,9 +17,13 @@ class Project_Progress:
 	var project_id:int = 0
 	var project_progress:float = 0.0
 	var enabled:bool = false
+	var tooltip:String = ""
+	var disabled_tooltip:String = ""
 	signal project_enabled
 	
-	func _init(project_id = 0, enabled = false, project_progress = 0.0):
+	func _init(project_id = 0, tooltip:String = "", disabled_tooltip:String = "", enabled = false, project_progress = 0.0):
+		self.tooltip = tooltip
+		self.disabled_tooltip = disabled_tooltip
 		self.project_id = project_id
 		self.project_progress = project_progress
 		self.enabled = enabled
@@ -31,7 +35,6 @@ class Project_Progress:
 
 var progress: float = 0.0:
 	set(v):
-		print("CHANGING PROGRESS TO: ", v)
 		progress = v
 		var project:Project_Progress = get_project(current_project_id)
 		project.project_progress = v
@@ -44,25 +47,55 @@ var progress_bar:ProgressBar :
 
 var progress_base_value: float = 5.5
 var projects:Array[Project_Progress] = [
-	Project_Progress.new(Projects.STUDY_CODE, true),
-	Project_Progress.new(Projects.STUDY_ART, true),
-	Project_Progress.new(Projects.HOBBY_SITE),
-	Project_Progress.new(Projects.HOBBY_GAME),
-	Project_Progress.new(Projects.WEBSITE),
-	Project_Progress.new(Projects.GAME)
+	Project_Progress.new(Projects.STUDY_CODE, "Gain 1 Coding Level upon completion", "", true),
+	Project_Progress.new(Projects.STUDY_ART, "Gain 1 Art Level upon completion", "", true),
+	Project_Progress.new(Projects.HOBBY_SITE, "Gain 1 project point upon completion", "To Unlock: Put 1 skill point in Web Dev"),
+	Project_Progress.new(Projects.HOBBY_GAME, "Gain 1 project point upon completion", "To Unlock: Put 1 skill point in Game Dev"),
+	Project_Progress.new(Projects.WEBSITE, "Gain 5 project points and £10 upon completion", "To Unlock: 5 pts in Web Dev & Trad. Art"),
+	Project_Progress.new(Projects.GAME, "Gain 5 project points and £10 upon completion", "To Unlock: 5 pts in Game Dev & Dig. Art")
 ]
 
-func player_click():
-	if not is_modification_needed():
-		progress_bar.value += progress_base_value
-		if progress_bar.value >= 100.0:
-			progress_bar.value = 0
-			emit_signal("finished_progress")
-	pass
+func player_click(modifier_stats:Array[Modifier_Stat]):
+	var modification:float = get_modification(modifier_stats)
+	progress_bar.value += progress_base_value * modification
+	if progress_bar.value >= 100.0:
+		progress_bar.value = 0
+		emit_signal("finished_progress")
 	
 
-func is_modification_needed():
-	return false
+func get_modification(modifier_stats:Array[Modifier_Stat]):
+	var energy = modifier_stats[Enums.MODIFIER_STATS.ENERGY].value
+	var temperature = modifier_stats[Enums.MODIFIER_STATS.TEMPERATURE].value
+	var comfort = modifier_stats[Enums.MODIFIER_STATS.COMFORT].value
+	var mental_health = modifier_stats[Enums.MODIFIER_STATS.MENTAL_HP].value
+	var physical_health = modifier_stats[Enums.MODIFIER_STATS.PHYSICAL_HP].value
+	
+	var modification:float = 1.00
+	
+	if energy < 20:
+		modification *= 0.5
+	elif energy < 30:
+		modification *= 0.7
+	
+	if temperature < 30 || temperature > 70:
+		modification *= 0.7
+	
+	if comfort < 20:
+		modification *= 0.5
+	elif comfort < 30:
+		modification *= 0.7
+	
+	if mental_health < 20:
+		modification *= 0.5
+	elif mental_health < 30:
+		modification *= 0.7
+	
+	if physical_health < 20:
+		modification *= 0.5
+	elif physical_health < 30:
+		modification *= 0.7
+	
+	return modification
 
 func change_progress(value):
 	progress = value

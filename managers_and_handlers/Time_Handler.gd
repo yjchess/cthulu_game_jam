@@ -6,8 +6,36 @@ var auto_study_ticks_base: float = 5.5
 var auto_study_curve = preload("res://managers_and_handlers/Stats/auto_study_curve.tres")
 
 signal second_passed
-var time:int = 8*60
-var day:int = 0
+signal day_passed
+signal season_passed
+signal year_passed
+
+var time:int = 8*60:
+	set(v):
+		time = v if v < 24*60 else 0; 
+		if time == 0 and v % 24*60 == 0: day += 1 
+		
+var day:int = 1:
+	set(v):
+		day = v if v < 29 else 1
+		emit_signal("day_passed", day)
+		
+		if day == 1:
+			season += 1
+
+var season:int = 1:
+	set(v):
+		season = v if v < 5 else 1
+		emit_signal("season_passed", season)
+		
+		if season == 1:
+			year += 1
+
+var year:int = 1:
+	set(v):
+		year = v
+		emit_signal("year_passed", year)
+		
 @onready var day_timer: Timer = %day_timer
 
 func _ready():
@@ -15,10 +43,7 @@ func _ready():
 	day_timer.timeout.connect(increment_time)
 
 func increment_time():
-	time += 1;
-	if time >= 24*60:
-		day += 1
-		time = 1
+	time += 24*60;
 	
 	var hours:int = time / 60
 	var minutes:int = time % 60

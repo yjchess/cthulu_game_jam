@@ -1,0 +1,469 @@
+[gd_scene load_steps=16 format=3 uid="uid://bt7bp3mn8lq7v"]
+
+[ext_resource type="PackedScene" uid="uid://cccroup4hredi" path="res://UI/ui_components/upgrade_view_buttons/Upgrades_Selection_Button.tscn" id="1_2hp1u"]
+[ext_resource type="Script" path="res://UI/ui_upgrades/upgrade_handler.gd" id="1_gpq6w"]
+[ext_resource type="Theme" uid="uid://22pl8ilt400b" path="res://UI/ui_components/upgrade_view_buttons/button_themes/add_button.tres" id="1_wf5di"]
+[ext_resource type="ButtonGroup" uid="uid://bk0vkycvfqbaw" path="res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_area_selection.tres" id="2_chfv6"]
+[ext_resource type="PackedScene" uid="uid://cr03co5841jkt" path="res://UI/ui_components/Skill_Button/skill_button.tscn" id="2_w1aaw"]
+[ext_resource type="PackedScene" uid="uid://d0bjmj7oachcm" path="res://UI/ui_components/skill_view_lines/skill_view_container.tscn" id="3_8swla"]
+[ext_resource type="PackedScene" uid="uid://dtvilhi5smc7f" path="res://UI/ui_components/clothes_button/clothes_button.tscn" id="5_hbvwn"]
+[ext_resource type="PackedScene" uid="uid://cjw5iq1k8bh8f" path="res://UI/ui_components/shop_ui/shop_view.tscn" id="6_j8uiw"]
+[ext_resource type="PackedScene" uid="uid://bfwfx6b0qey6m" path="res://UI/ui_components/labels/ui_sub_title.tscn" id="7_jhxui"]
+[ext_resource type="Texture2D" uid="uid://o4bo4ltm85hs" path="res://assets/door.png" id="8_0a1vq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huhr"]
+bg_color = Color(0.266575, 0.266575, 0.266575, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hs7mq"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gpkhp"]
+color = Color(0.498039, 0.498039, 0.498039, 1)
+thickness = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixu11"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp1xt"]
+content_margin_top = 20.0
+bg_color = Color(0.118581, 0.118581, 0.118581, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_gpq6w")
+
+[node name="Upgrades_View_Handler" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -264.0
+offset_bottom = 206.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="Upgrades_View" type="PanelContainer" parent="Upgrades_View_Handler"]
+clip_contents = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_3huhr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Upgrades_View_Handler/Upgrades_View"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Upgrades_View_Container" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Upgrade_Title" type="Label" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 15
+text = "SKILLS"
+horizontal_alignment = 1
+
+[node name="Upgrade_Areas" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Upgrades_Selection_Button" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" instance=ExtResource("1_2hp1u")]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+button_group = ExtResource("2_chfv6")
+text = "Current"
+button_text = "Current"
+button_group_of = 1
+
+[node name="Upgrades_Selection_Button2" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" instance=ExtResource("1_2hp1u")]
+layout_mode = 2
+size_flags_horizontal = 3
+button_group = ExtResource("2_chfv6")
+text = "Shop"
+button_text = "Shop"
+id = 1
+button_group_of = 1
+
+[node name="HSeparator" type="HSeparator" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
+layout_mode = 2
+
+[node name="Skills_View" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Skill_View_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View" instance=ExtResource("3_8swla")]
+layout_mode = 2
+skill_title = "Coding:"
+has_add = false
+skill_title_tooltip = "Coding points increase rate of learning coding. Used points still count"
+
+[node name="Skill_View_Container2" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View" instance=ExtResource("3_8swla")]
+layout_mode = 2
+skill_title = "Art:"
+skill_index = 1
+has_add = false
+skill_title_tooltip = "Art points increase rate of learning Art. Used points still count"
+
+[node name="HSeparator" type="HSeparator" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View"]
+layout_mode = 2
+
+[node name="Skill_View_Container3" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View" instance=ExtResource("3_8swla")]
+layout_mode = 2
+skill_title = "Auto-study:"
+skill_index = 2
+skill_title_tooltip = "Spend 1 Coding + 1 Art to reduce auto_study time"
+
+[node name="HSeparator2" type="HSeparator" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View"]
+layout_mode = 2
+
+[node name="Skill_View_Container4" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View" instance=ExtResource("3_8swla")]
+layout_mode = 2
+skill_title = "Web-dev:"
+skill_index = 3
+skill_title_tooltip = "Speeds up projects requiring web development"
+
+[node name="Skill_View_Container5" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View" instance=ExtResource("3_8swla")]
+layout_mode = 2
+skill_title = "Game-dev:"
+skill_index = 4
+skill_title_tooltip = "Speeds up projects requiring game development"
+
+[node name="Skill_View_Container6" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View" instance=ExtResource("3_8swla")]
+layout_mode = 2
+skill_title = "Digital Art:"
+skill_index = 5
+skill_title_tooltip = "Speeds up projects requiring digital art"
+
+[node name="Skill_View_Container7" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View" instance=ExtResource("3_8swla")]
+layout_mode = 2
+skill_title = "Trad. Art:"
+skill_index = 6
+skill_title_tooltip = "Speeds up projects requiring traditional art"
+
+[node name="HSeparator3" type="HSeparator" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View"]
+layout_mode = 2
+
+[node name="Other_Skills" type="Button" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View"]
+layout_mode = 2
+text = "Other"
+
+[node name="Clothing_View" type="PanelContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hs7mq")
+
+[node name="Current_Clothing_View" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View"]
+custom_minimum_size = Vector2(0, 87)
+layout_mode = 2
+
+[node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer" instance=ExtResource("5_hbvwn")]
+layout_mode = 2
+clothing_icon = "None_Icon"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View"]
+layout_mode = 2
+
+[node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer2" instance=ExtResource("5_hbvwn")]
+layout_mode = 2
+clothing_title = "Body 1"
+clothing_icon = "white_shirt"
+
+[node name="Clothes_Button_Container2" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer2" instance=ExtResource("5_hbvwn")]
+layout_mode = 2
+clothing_title = "Body 2"
+clothing_icon = "suit"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View"]
+layout_mode = 2
+
+[node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer3" instance=ExtResource("5_hbvwn")]
+layout_mode = 2
+clothing_title = "Legs"
+clothing_icon = "None_Icon"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View"]
+layout_mode = 2
+
+[node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer4" instance=ExtResource("5_hbvwn")]
+layout_mode = 2
+clothing_title = "Feet"
+clothing_icon = "None_Icon"
+
+[node name="Shop_Clothing_View" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View" instance=ExtResource("6_j8uiw")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+shop_title = "Clothing:"
+shop_categories = Array[int]([0, 1, 2, 3, 4])
+
+[node name="Desk_View" type="PanelContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hs7mq")
+
+[node name="Current_Desk_View" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Desk_View"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Sub_Title" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Desk_View/Current_Desk_View" instance=ExtResource("7_jhxui")]
+layout_mode = 2
+text = "Desk Model:"
+
+[node name="Sub_Title3" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Desk_View/Current_Desk_View" instance=ExtResource("7_jhxui")]
+layout_mode = 2
+text = "Chair Model:"
+
+[node name="Sub_Title2" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Desk_View/Current_Desk_View" instance=ExtResource("7_jhxui")]
+layout_mode = 2
+text = "Keyboard & Mouse:"
+
+[node name="Sub_Title4" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Desk_View/Current_Desk_View" instance=ExtResource("7_jhxui")]
+layout_mode = 2
+text = "Monitors & Mounts:"
+
+[node name="Sub_Title5" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Desk_View/Current_Desk_View" instance=ExtResource("7_jhxui")]
+layout_mode = 2
+text = "Desk Slots:"
+
+[node name="Shop_Desk_View" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Desk_View" instance=ExtResource("6_j8uiw")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+shop_title = "Desk:"
+shop_categories = Array[int]([5, 6, 7, 8])
+
+[node name="Other_View" type="PanelContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hs7mq")
+
+[node name="Current_Other_View" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Other_View"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Sub_Title" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Other_View/Current_Other_View" instance=ExtResource("7_jhxui")]
+layout_mode = 2
+text = "Room Decorations:"
+
+[node name="Sub_Title3" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Other_View/Current_Other_View" instance=ExtResource("7_jhxui")]
+layout_mode = 2
+text = "Desk Decorations:"
+
+[node name="Shop_Other_View" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Other_View" instance=ExtResource("6_j8uiw")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+shop_title = "Other:"
+shop_categories = Array[int]([9, 10])
+
+[node name="Door_View" type="PanelContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hs7mq")
+
+[node name="Current_Door_View" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Door_View"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Door_View/Current_Door_View"]
+layout_mode = 2
+texture = ExtResource("8_0a1vq")
+stretch_mode = 3
+
+[node name="Shop_Door_View" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Door_View" instance=ExtResource("6_j8uiw")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+shop_title = "Door:"
+shop_categories = Array[int]([11])
+
+[node name="Upgrades_Container" type="VBoxContainer" parent="Upgrades_View_Handler"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Upgrades_View_Handler/Upgrades_Container"]
+layout_mode = 2
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Upgrades_View_Handler/Upgrades_Container"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_gpkhp")
+
+[node name="Upgrades_Selection_Button" parent="Upgrades_View_Handler/Upgrades_Container" instance=ExtResource("1_2hp1u")]
+layout_mode = 2
+button_pressed = true
+
+[node name="Upgrades_Selection_Button2" parent="Upgrades_View_Handler/Upgrades_Container" instance=ExtResource("1_2hp1u")]
+layout_mode = 2
+text = "Clothing"
+button_text = "Clothing"
+id = 1
+
+[node name="Upgrades_Selection_Button3" parent="Upgrades_View_Handler/Upgrades_Container" instance=ExtResource("1_2hp1u")]
+layout_mode = 2
+text = "Desk"
+button_text = "Desk"
+id = 2
+
+[node name="Upgrades_Selection_Button4" parent="Upgrades_View_Handler/Upgrades_Container" instance=ExtResource("1_2hp1u")]
+layout_mode = 2
+text = "Other"
+button_text = "Other"
+id = 3
+
+[node name="Upgrades_Selection_Button5" parent="Upgrades_View_Handler/Upgrades_Container" instance=ExtResource("1_2hp1u")]
+layout_mode = 2
+text = "Door"
+button_text = "Door"
+id = 4
+
+[node name="Project_Point_Skills" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(550, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ixu11")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Project_Point_Skills"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Project_Point_Skills/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Project_Point_Skills/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Project Points: 0"
+
+[node name="Label" type="Label" parent="Project_Point_Skills/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Special Skills:"
+
+[node name="Exit_Button" type="Button" parent="Project_Point_Skills/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+theme = ExtResource("1_wf5di")
+text = "X"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Project_Point_Skills/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Project points can be earned through completing certain projects like: \"Hobby Site\" or \"Hobby Game\" and \"Website\" or \"Game\". These can be exchanged for certain benefits.
+"
+fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_sp1xt")
+
+[node name="GridContainer" type="GridContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Spacer" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Spacer3" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View/Other_Skills" to="." method="_on_other_skills_pressed"]
+[connection signal="pressed" from="Project_Point_Skills/VBoxContainer/HBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]

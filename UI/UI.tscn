@@ -1,30 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8o4fgjtxh30b"]
+[gd_scene load_steps=13 format=3 uid="uid://b8o4fgjtxh30b"]
 
 [ext_resource type="Script" path="res://UI/UI_Handler.gd" id="1_23snl"]
 [ext_resource type="PackedScene" uid="uid://6jms5gi13do0" path="res://UI/ui_components/stats_container/stats_container.tscn" id="1_esj76"]
-[ext_resource type="PackedScene" uid="uid://cccroup4hredi" path="res://UI/ui_components/upgrade_view_buttons/Upgrades_Selection_Button.tscn" id="2_1wcm0"]
-[ext_resource type="PackedScene" uid="uid://d0bjmj7oachcm" path="res://UI/ui_components/skill_view_lines/skill_view_container.tscn" id="2_ibosk"]
-[ext_resource type="ButtonGroup" uid="uid://bk0vkycvfqbaw" path="res://UI/ui_components/upgrade_view_buttons/button_groups/upgrade_area_selection.tres" id="4_udq3r"]
+[ext_resource type="PackedScene" uid="uid://bt7bp3mn8lq7v" path="res://UI/ui_upgrades/upgrades_view_handler.tscn" id="2_7ddwd"]
 [ext_resource type="PackedScene" uid="uid://cdei8n7t5675n" path="res://UI/ui_components/modifier_stats/modifier_blocker_container.tscn" id="6_dcgbc"]
-[ext_resource type="Theme" uid="uid://22pl8ilt400b" path="res://UI/ui_components/upgrade_view_buttons/button_themes/add_button.tres" id="7_hdrd6"]
-[ext_resource type="PackedScene" uid="uid://cr03co5841jkt" path="res://UI/ui_components/Skill_Button/skill_button.tscn" id="8_5kqdd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huhr"]
-bg_color = Color(0.266575, 0.266575, 0.266575, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2map"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_gpkhp"]
-color = Color(0.498039, 0.498039, 0.498039, 1)
-thickness = 5
+[ext_resource type="PackedScene" uid="uid://b3ip1usw33c2k" path="res://UI/ui_components/Goal_Line/goal_line.tscn" id="9_ms0ym"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfptn"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 0.65098)
@@ -39,16 +19,16 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0ibf"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.176471, 0.176471, 0.176471, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_86uly"]
 thickness = 5
@@ -86,210 +66,22 @@ corner_radius_top_left = 4
 corner_radius_bottom_left = 4
 corner_detail = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpec0"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.176471, 0.176471, 0.176471, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx7dx"]
+content_margin_left = 6.0
+bg_color = Color(0.374139, 0.374139, 0.374139, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odmnl"]
-content_margin_top = 20.0
-bg_color = Color(0.118581, 0.118581, 0.118581, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_23snl")
 
-[node name="Upgrades" type="HBoxContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-
-[node name="Upgrades_View" type="PanelContainer" parent="Upgrades"]
-clip_contents = true
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_3huhr")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Upgrades/Upgrades_View"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Upgrades/Upgrades_View/ScrollContainer"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
-
-[node name="Upgrades_View_Container" type="VBoxContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Upgrade_Title" type="Label" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 15
-text = "SKILLS"
-horizontal_alignment = 1
-
-[node name="Upgrade_Areas" type="HBoxContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Upgrades_Selection_Button" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-size_flags_horizontal = 3
-button_pressed = true
-button_group = ExtResource("4_udq3r")
-text = "Current"
-button_text = "Current"
-button_group_of = 1
-
-[node name="Upgrades_Selection_Button2" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-size_flags_horizontal = 3
-button_group = ExtResource("4_udq3r")
-text = "Shop"
-button_text = "Shop"
-id = 1
-button_group_of = 1
-
-[node name="Skills_View_Container" type="PanelContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_m2map")
-
-[node name="Skills_Views" type="VBoxContainer" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="HSeparator4" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
-layout_mode = 2
-
-[node name="Skill_View_Container" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
-layout_mode = 2
-skill_title = "Coding:"
-has_add = false
-skill_title_tooltip = "Coding points increase rate of learning coding. Used points still count"
-
-[node name="Skill_View_Container2" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
-layout_mode = 2
-skill_title = "Art:"
-skill_index = 1
-has_add = false
-skill_title_tooltip = "Art points increase rate of learning Art. Used points still count"
-
-[node name="HSeparator" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
-layout_mode = 2
-
-[node name="Skill_View_Container3" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
-layout_mode = 2
-skill_title = "Auto-study:"
-skill_index = 2
-skill_title_tooltip = "Spend 1 Coding + 1 Art to reduce auto_study time"
-
-[node name="HSeparator2" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
-layout_mode = 2
-
-[node name="Skill_View_Container4" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
-layout_mode = 2
-skill_title = "Web-dev:"
-skill_index = 3
-skill_title_tooltip = "Speeds up projects requiring web development"
-
-[node name="Skill_View_Container5" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
-layout_mode = 2
-skill_title = "Game-dev:"
-skill_index = 4
-skill_title_tooltip = "Speeds up projects requiring game development"
-
-[node name="Skill_View_Container6" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
-layout_mode = 2
-skill_title = "Digital Art:"
-skill_index = 5
-skill_title_tooltip = "Speeds up projects requiring digital art"
-
-[node name="Skill_View_Container7" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views" instance=ExtResource("2_ibosk")]
-layout_mode = 2
-skill_title = "Trad. Art:"
-skill_index = 6
-skill_title_tooltip = "Speeds up projects requiring traditional art"
-
-[node name="HSeparator3" type="HSeparator" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
-layout_mode = 2
-
-[node name="Other_Skills" type="Button" parent="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View_Container/Skills_Views"]
-layout_mode = 2
-text = "Other"
-
-[node name="Upgrades_Container" type="VBoxContainer" parent="Upgrades"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Upgrades/Upgrades_Container"]
-layout_mode = 2
-text = "Upgrades"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Upgrades/Upgrades_Container"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_gpkhp")
-
-[node name="Upgrades_Selection_Button" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-button_pressed = true
-
-[node name="Upgrades_Selection_Button2" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-text = "Clothing"
-button_text = "Clothing"
-id = 1
-
-[node name="Upgrades_Selection_Button3" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-text = "Desk"
-button_text = "Desk"
-id = 1
-
-[node name="Upgrades_Selection_Button4" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-text = "Other"
-button_text = "Other"
-id = 1
-
-[node name="Upgrades_Selection_Button5" parent="Upgrades/Upgrades_Container" instance=ExtResource("2_1wcm0")]
-layout_mode = 2
-text = "Door"
-button_text = "Door"
-id = 1
+[node name="Upgrades_View" parent="." instance=ExtResource("2_7ddwd")]
 
 [node name="EventContainer" type="VBoxContainer" parent="."]
 visible = false
@@ -315,29 +107,41 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_kfptn")
 
 [node name="Events Log" type="PanelContainer" parent="."]
+clip_contents = true
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -188.0
-offset_top = -215.0
-offset_right = -5.0
-offset_bottom = -5.0
+offset_left = -183.0
+offset_top = -210.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_r0ibf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Events Log"]
+[node name="Event_Logs_View" type="VBoxContainer" parent="Events Log"]
+unique_name_in_owner = true
+clip_contents = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Events Log/VBoxContainer"]
+[node name="Label" type="Label" parent="Events Log/Event_Logs_View"]
 layout_mode = 2
 text = "Events Log"
 
-[node name="HSeparator" type="HSeparator" parent="Events Log/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Events Log/Event_Logs_View"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_86uly")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Events Log/Event_Logs_View"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Event_Logs_Container" type="VBoxContainer" parent="Events Log/Event_Logs_View/ScrollContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Score_Containers" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(100, 0)
@@ -400,6 +204,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_doty4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h3klt")
 
 [node name="Modifier_Blocker_Container" type="MarginContainer" parent="."]
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(220, 159)
 anchors_preset = 2
@@ -413,32 +218,6 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Modifier_Blocker_Container"]
-layout_mode = 2
-theme_override_constants/separation = 1
-
-[node name="Blocker_Container" parent="Modifier_Blocker_Container/VBoxContainer" instance=ExtResource("6_dcgbc")]
-layout_mode = 2
-
-[node name="Blocker_Container2" type="HBoxContainer" parent="Modifier_Blocker_Container/VBoxContainer"]
-layout_mode = 2
-
-[node name="Spacer" type="Label" parent="Modifier_Blocker_Container/VBoxContainer/Blocker_Container2"]
-custom_minimum_size = Vector2(0, 27)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="Blocker_Container3" parent="Modifier_Blocker_Container/VBoxContainer" instance=ExtResource("6_dcgbc")]
-layout_mode = 2
-
-[node name="Blocker_Container4" parent="Modifier_Blocker_Container/VBoxContainer" instance=ExtResource("6_dcgbc")]
-layout_mode = 2
-
-[node name="Blocker_Container5" parent="Modifier_Blocker_Container/VBoxContainer" instance=ExtResource("6_dcgbc")]
-layout_mode = 2
-amount_blocked = 30.0
-
 [node name="Modifier_Stats_Margin_Container" type="MarginContainer" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
@@ -451,6 +230,33 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
+[node name="Modifier_Blocker" type="VBoxContainer" parent="Modifier_Stats_Margin_Container"]
+z_index = 1
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Blocker_Container" parent="Modifier_Stats_Margin_Container/Modifier_Blocker" instance=ExtResource("6_dcgbc")]
+layout_mode = 2
+
+[node name="Blocker_Container2" type="HBoxContainer" parent="Modifier_Stats_Margin_Container/Modifier_Blocker"]
+layout_mode = 2
+
+[node name="Spacer" type="Label" parent="Modifier_Stats_Margin_Container/Modifier_Blocker/Blocker_Container2"]
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="Blocker_Container3" parent="Modifier_Stats_Margin_Container/Modifier_Blocker" instance=ExtResource("6_dcgbc")]
+layout_mode = 2
+
+[node name="Blocker_Container4" parent="Modifier_Stats_Margin_Container/Modifier_Blocker" instance=ExtResource("6_dcgbc")]
+layout_mode = 2
+
+[node name="Blocker_Container5" parent="Modifier_Stats_Margin_Container/Modifier_Blocker" instance=ExtResource("6_dcgbc")]
+layout_mode = 2
+amount_blocked = 30.0
+
 [node name="Modifier_Stats_Container" type="VBoxContainer" parent="Modifier_Stats_Margin_Container"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -458,27 +264,32 @@ theme_override_constants/separation = 1
 
 [node name="StatsContainer" parent="Modifier_Stats_Margin_Container/Modifier_Stats_Container" instance=ExtResource("1_esj76")]
 layout_mode = 2
+main_content = "How much energy you have. Sleep / rest to gain more."
 
 [node name="StatsContainer2" parent="Modifier_Stats_Margin_Container/Modifier_Stats_Container" instance=ExtResource("1_esj76")]
 layout_mode = 2
 id = 1
 label = "Temp."
 tooltip = "Keep between 30 and 70%"
+main_content = "How hot the current room is. Use radiator / fan to regulate."
 
 [node name="StatsContainer3" parent="Modifier_Stats_Margin_Container/Modifier_Stats_Container" instance=ExtResource("1_esj76")]
 layout_mode = 2
 id = 2
 label = "Comfort"
+main_content = "How comfy you are. Affected by clothes / room / desk / seat"
 
 [node name="StatsContainer4" parent="Modifier_Stats_Margin_Container/Modifier_Stats_Container" instance=ExtResource("1_esj76")]
 layout_mode = 2
 id = 3
 label = "Mental HP"
+main_content = "State of your depression. Balance finishing projects with other activities."
 
 [node name="StatsContainer5" parent="Modifier_Stats_Margin_Container/Modifier_Stats_Container" instance=ExtResource("1_esj76")]
 layout_mode = 2
 id = 4
 label = "Physical HP"
+main_content = "State of your physical health. Go to gym to boost."
 
 [node name="Data_Container" type="VBoxContainer" parent="."]
 offset_right = 200.0
@@ -495,6 +306,7 @@ text = "Year:
 horizontal_alignment = 1
 
 [node name="Year_Value" type="Label" parent="Data_Container/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "1
@@ -510,6 +322,7 @@ text = "Season:
 horizontal_alignment = 1
 
 [node name="Season_Value" type="Label" parent="Data_Container/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Spring"
@@ -524,6 +337,7 @@ text = "Day:
 horizontal_alignment = 1
 
 [node name="Day_Value" type="Label" parent="Data_Container/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "1/28"
@@ -555,90 +369,69 @@ popup/item_1/id = 1
 popup/item_2/text = "Bed"
 popup/item_2/id = 2
 
-[node name="Project_Point_Skills" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(550, 400)
-anchors_preset = 8
-anchor_left = 0.5
+[node name="Goals" type="PanelContainer" parent="."]
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
+offset_top = -105.0
+offset_right = 183.0
+offset_bottom = 98.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_cpec0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gx7dx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Project_Point_Skills"]
+[node name="Goal_Line_Container" type="VBoxContainer" parent="Goals"]
 layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Project_Point_Skills/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="Project_Point_Skills/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Project Points: 0"
-
-[node name="Label" type="Label" parent="Project_Point_Skills/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Special Skills:"
-
-[node name="Exit_Button" type="Button" parent="Project_Point_Skills/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
 size_flags_vertical = 0
-theme = ExtResource("7_hdrd6")
-text = "X"
+theme_override_constants/separation = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Project_Point_Skills/VBoxContainer"]
+[node name="Label" type="Label" parent="Goals/Goal_Line_Container"]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
-bbcode_enabled = true
-text = "Project points can be earned through completing certain projects like: \"Hobby Site\" or \"Hobby Game\" and \"Website\" or \"Game\". These can be exchanged for certain benefits.
+text = "Goals
 "
-fit_content = true
+horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Goals/Goal_Line_Container"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_odmnl")
+theme_override_styles/separator = SubResource("StyleBoxLine_86uly")
 
-[node name="GridContainer" type="GridContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+[node name="Goal_Line" parent="Goals/Goal_Line_Container" instance=ExtResource("9_ms0ym")]
 layout_mode = 2
-columns = 5
+goal_text = "Study Coding"
 
-[node name="Spacer" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+[node name="Goal_Line2" parent="Goals/Goal_Line_Container" instance=ExtResource("9_ms0ym")]
 layout_mode = 2
+goal_text = "Study Art"
 
-[node name="Spacer2" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+[node name="Goal_Line3" parent="Goals/Goal_Line_Container" instance=ExtResource("9_ms0ym")]
 layout_mode = 2
+goal_text = "Lvl up Auto-study"
 
-[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer" instance=ExtResource("8_5kqdd")]
+[node name="Goal_Line4" parent="Goals/Goal_Line_Container" instance=ExtResource("9_ms0ym")]
 layout_mode = 2
-size_flags_horizontal = 6
+goal_text = "Finish a Hobby Project"
 
-[node name="Spacer3" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+[node name="Goal_Line5" parent="Goals/Goal_Line_Container" instance=ExtResource("9_ms0ym")]
 layout_mode = 2
+goal_text = "Spend Project Points"
 
-[node name="Spacer4" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
+[node name="Goal_Line6" parent="Goals/Goal_Line_Container" instance=ExtResource("9_ms0ym")]
 layout_mode = 2
+goal_text = "Have £1200"
 
-[connection signal="pressed" from="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Upgrades_Selection_Button" to="." method="_on_current_button_pressed"]
-[connection signal="pressed" from="Upgrades/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Upgrade_Areas/Upgrades_Selection_Button2" to="." method="_on_shop_button_pressed"]
+[node name="HSeparator2" type="HSeparator" parent="Goals/Goal_Line_Container"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_86uly")
+
+[node name="Goal_Line7" parent="Goals/Goal_Line_Container" instance=ExtResource("9_ms0ym")]
+layout_mode = 2
+goal_text = "Purchase next door!"
+font_color = Color(1, 0.843137, 0, 1)
+
+[node name="Label" parent="Goals/Goal_Line_Container/Goal_Line7" index="0"]
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "Purchase next door!"
+
 [connection signal="item_selected" from="Score_Containers/HBoxContainer2/Current_Project" to="." method="_on_current_project_item_selected"]
+
+[editable path="Goals/Goal_Line_Container/Goal_Line7"]

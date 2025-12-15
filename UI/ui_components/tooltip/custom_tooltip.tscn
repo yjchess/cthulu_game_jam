@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxjbql20eju1h"]
+
+[ext_resource type="Script" path="res://UI/ui_components/tooltip/custom_tooltip.gd" id="1_vct06"]
+[ext_resource type="Theme" uid="uid://bupgh13b4cxcv" path="res://main_label_theme.tres" id="2_5xc2l"]
+[ext_resource type="Texture2D" uid="uid://dml74r8umkoxp" path="res://assets/None_Icon.png" id="3_ty3tk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3fwm"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.129412, 0.156863, 0.509804, 0.705882)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Custom_Tooltip" type="PanelContainer"]
+custom_minimum_size = Vector2(181, 0)
+offset_right = 181.0
+offset_bottom = 159.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h3fwm")
+script = ExtResource("1_vct06")
+title = "Energy"
+show_title_icon = null
+show_img = null
+main_content = null
+extra_content = null
+update_editor = null
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Header" type="Label" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_5xc2l")
+theme_type_variation = &"HeaderLarge"
+theme_override_constants/line_spacing = 0
+text = "Energy"
+
+[node name="Header_Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Main_Img" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_ty3tk")
+stretch_mode = 5
+
+[node name="Main_Content" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_5xc2l")
+theme_type_variation = &"HeaderMedium"
+theme_override_constants/line_spacing = 0
+text = "A couple of short words to describe."
+autowrap_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Extra_Content" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_5xc2l")
+theme_type_variation = &"HeaderSmall"
+theme_override_constants/line_spacing = 0
+text = "Extra information placed here. Can contain a lot more words"
+autowrap_mode = 2

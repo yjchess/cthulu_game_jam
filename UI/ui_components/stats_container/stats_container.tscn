@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://6jms5gi13do0"]
+[gd_scene load_steps=6 format=3 uid="uid://6jms5gi13do0"]
 
 [ext_resource type="Script" path="res://UI/ui_components/stats_container/stats_container.gd" id="1_8ydm5"]
+[ext_resource type="PackedScene" uid="uid://bxjbql20eju1h" path="res://UI/ui_components/tooltip/custom_tooltip.tscn" id="2_h10qb"]
 
 [sub_resource type="Theme" id="Theme_tvfpe"]
 
@@ -37,10 +38,16 @@ corner_detail = 6
 
 [node name="StatsContainer" type="HBoxContainer" groups=["Modifier_Stat_Display"]]
 custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 27.0
+theme_override_constants/separation = 0
 script = ExtResource("1_8ydm5")
+main_content = null
 
 [node name="Label" type="Label" parent="."]
 z_index = 1
+clip_contents = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 tooltip_text = "<30% = x0.7, <20% = x0.5"
 mouse_filter = 1
@@ -51,7 +58,31 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_filter = 1
 theme = SubResource("Theme_tvfpe")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_doty4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h3klt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Custom_Tooltip" parent="Control" instance=ExtResource("2_h10qb")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -135.0
+offset_bottom = 0.0
+grow_vertical = 0
+show_title_icon = false
+show_img = false
+main_content = "A couple of short words to describe."
+extra_content = "Extra information placed here. Can contain a lot more words"
+update_editor = false
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://drsdepoi1qc5w"]
+
+[ext_resource type="Theme" uid="uid://bupgh13b4cxcv" path="res://main_label_theme.tres" id="1_m8a8v"]
+
+[node name="ui_title_lable" type="Label"]
+size_flags_horizontal = 4
+theme = ExtResource("1_m8a8v")
+theme_type_variation = &"HeaderLarge"
+text = "Shop:"

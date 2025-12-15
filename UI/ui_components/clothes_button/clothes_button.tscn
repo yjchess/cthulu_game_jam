@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtvilhi5smc7f"]
+
+[ext_resource type="Script" path="res://UI/ui_components/clothes_button/clothes_button.gd" id="1_8jl12"]
+[ext_resource type="Texture2D" uid="uid://dml74r8umkoxp" path="res://assets/None_Icon.png" id="2_tqne0"]
+
+[node name="Clothes_Button_Container" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 6
+script = ExtResource("1_8jl12")
+clothing_icon = null
+
+[node name="clothing_title" type="Label" parent="."]
+clip_contents = true
+layout_mode = 2
+text = "Head"
+horizontal_alignment = 1
+
+[node name="Clothes_Button" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_tqne0")

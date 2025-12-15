@@ -15,16 +15,21 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 
 [node name="Blocker_Container" type="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+theme_override_constants/separation = 0
 script = ExtResource("1_4ulsc")
 
 [node name="Spacer" type="Label" parent="."]
-custom_minimum_size = Vector2(0, 27)
+clip_contents = true
+custom_minimum_size = Vector2(100, 27)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(100, 0)
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 3

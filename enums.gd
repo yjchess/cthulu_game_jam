@@ -17,3 +17,28 @@ enum MODIFIER_STATS{
 	MENTAL_HP,
 	PHYSICAL_HP,
 }
+
+enum EVENTS_LOG{
+	BENEFITS_RECEIVED,
+	RENT_PAID
+}
+
+enum EVENTS_LOG_VARIABLES{
+	AMOUNT
+}
+
+
+
+#UI enums
+enum Upgrade_Selection{
+	SKILLS,
+	CLOTHING,
+	DESK,
+	OTHER,
+	DOOR
+}
+
+enum Upgrade_View_Areas{
+	CURRENT,
+	SKILLS
+}
