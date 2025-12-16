@@ -38,7 +38,9 @@ func get_location():
 
 
 
-
+func modifier_stat_changed(modifier_id, modifier_value):
+	var modifier_stat_view = %Modifier_Stats_Container.get_child(modifier_id)
+	modifier_stat_view.progress_bar.value = modifier_value
 
 
 

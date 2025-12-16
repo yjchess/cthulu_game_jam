@@ -4,6 +4,7 @@ signal levellable_stat_change(stat_id:int, levels:int)
 signal auto_study_level_changed(level:int)
 signal money_changed
 signal events_log(event_id:Enums.EVENTS_LOG, variables:Dictionary)
+signal modifier_stat_changed
 
 var                           stats_data:Stats_Data = Stats_Data.new()
 var levellable_stat_handler:Levellable_Stat_Handler = Levellable_Stat_Handler.new(stats_data)
@@ -13,11 +14,15 @@ func _ready():
 	stats_data                       .money_changed .connect(self .money_changed            .emit)
 	stats_data            .auto_study_level_changed .connect(self .auto_study_level_changed .emit)
 	levellable_stat_handler .levellable_stat_change .connect(self .levellable_stat_change   .emit)
+	modifier_stat_handler.stat_changed.connect(self.modifier_stat_changed.emit)
 	#levellable_stat_handler .levellable_stat_change .connect(func(stat_id, levels): self.levellable_stat_change.emit(stat_id, levels))
 	
 
 func increment_levellable_stat(stat_id:int, amount:int = 1, is_free:bool = false):
 	levellable_stat_handler.increment_stat(stat_id, amount, is_free)
+
+func handle_hour_ended():
+	modifier_stat_handler.handle_hour_ended()
 
 func handle_day_ended():
 	stats_data.money += stats_data.benefits_per_day

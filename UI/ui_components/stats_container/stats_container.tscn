@@ -42,7 +42,6 @@ offset_right = 200.0
 offset_bottom = 27.0
 theme_override_constants/separation = 0
 script = ExtResource("1_8ydm5")
-main_content = null
 
 [node name="Label" type="Label" parent="."]
 z_index = 1
@@ -78,11 +77,11 @@ anchor_bottom = 1.0
 offset_top = -135.0
 offset_bottom = 0.0
 grow_vertical = 0
-show_title_icon = false
-show_img = false
-main_content = "A couple of short words to describe."
-extra_content = "Extra information placed here. Can contain a lot more words"
-update_editor = false
+size_flags_vertical = 0
+title = "Energy"
+img_path = "res://assets/None_Icon.png"
+main_content = "How much energy you have. Sleep / rest to gain more."
+extra_content = "<30% = x0.7, <20% = x0.5"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

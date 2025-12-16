@@ -31,6 +31,8 @@ func _on_shop_button_pressed() -> void:
 			%Clothing_View.show()
 			%Current_Clothing_View.hide()
 			%Shop_Clothing_View.show()
+			await get_tree().process_frame
+			%Shop_Clothing_View.update_tooltip_global_positions()
 		
 		Enums.Upgrade_Selection.DESK:
 			%Desk_View.show()

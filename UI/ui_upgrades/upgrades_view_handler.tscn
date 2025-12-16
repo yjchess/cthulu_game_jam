@@ -78,7 +78,6 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 
 [node name="Upgrades_View" type="PanelContainer" parent="Upgrades_View_Handler"]
-clip_contents = true
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -136,7 +135,6 @@ layout_mode = 2
 
 [node name="Skills_View" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 
@@ -214,18 +212,20 @@ layout_mode = 2
 
 [node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer" instance=ExtResource("5_hbvwn")]
 layout_mode = 2
-clothing_icon = "None_Icon"
+item_id = -1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View"]
 layout_mode = 2
 
 [node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer2" instance=ExtResource("5_hbvwn")]
 layout_mode = 2
+item_id = 10
 clothing_title = "Body 1"
 clothing_icon = "white_shirt"
 
 [node name="Clothes_Button_Container2" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer2" instance=ExtResource("5_hbvwn")]
 layout_mode = 2
+item_id = 20
 clothing_title = "Body 2"
 clothing_icon = "suit"
 
@@ -234,16 +234,16 @@ layout_mode = 2
 
 [node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer3" instance=ExtResource("5_hbvwn")]
 layout_mode = 2
+item_id = 30
 clothing_title = "Legs"
-clothing_icon = "None_Icon"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View"]
 layout_mode = 2
 
 [node name="Clothes_Button_Container" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer4" instance=ExtResource("5_hbvwn")]
 layout_mode = 2
+item_id = 40
 clothing_title = "Feet"
-clothing_icon = "None_Icon"
 
 [node name="Shop_Clothing_View" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View" instance=ExtResource("6_j8uiw")]
 unique_name_in_owner = true
@@ -318,6 +318,7 @@ shop_categories = Array[int]([9, 10])
 
 [node name="Door_View" type="PanelContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container" groups=["upgrade_views_containers"]]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hs7mq")
@@ -329,6 +330,7 @@ theme_override_constants/separation = 10
 
 [node name="TextureRect" type="TextureRect" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Door_View/Current_Door_View"]
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("8_0a1vq")
 stretch_mode = 3
 

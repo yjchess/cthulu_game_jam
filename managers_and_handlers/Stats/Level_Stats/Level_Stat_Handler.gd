@@ -3,6 +3,7 @@ class_name Levellable_Stat_Handler extends Node
 var stats_data:Stats_Data
 var levellable_stats:Array[Levellable_Stat]
 signal levellable_stat_change(stat_id:int, levels:int)
+signal auto_study_level_changed
 
 func _init(stats_data:Stats_Data):
 	self.stats_data = stats_data

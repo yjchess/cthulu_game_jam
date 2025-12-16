@@ -9,6 +9,8 @@ var project_points:         int = 0
 var benefits_per_day: float = 15.00
 var monthly_rent: float     = 550.00
 
+var energy_cost_per_hour: float = 10.0
+
 var money:             float = 0.00:
 	set(v):
 		money = v

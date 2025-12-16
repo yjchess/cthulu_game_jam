@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfpfq43rqh1is"]
+[gd_scene load_steps=23 format=3 uid="uid://cfpfq43rqh1is"]
 
 [ext_resource type="Texture2D" uid="uid://3oa8bxq10kvi" path="res://assets/desk.png" id="1_2epbx"]
 [ext_resource type="Texture2D" uid="uid://o4bo4ltm85hs" path="res://assets/door.png" id="1_kwckf"]
 [ext_resource type="Script" path="res://managers_and_handlers/game_manager.gd" id="1_w3jtd"]
 [ext_resource type="PackedScene" uid="uid://b8o4fgjtxh30b" path="res://UI/UI.tscn" id="2_1k4ju"]
 [ext_resource type="Texture2D" uid="uid://cfmwjxnw2vos0" path="res://assets/chair.png" id="2_et4v2"]
+[ext_resource type="Texture2D" uid="uid://brkak6ydkskua" path="res://assets/dual_monitors.png" id="3_1g1e6"]
 [ext_resource type="Script" path="res://managers_and_handlers/Time_Handler.gd" id="6_mx53e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbagv"]
@@ -12,6 +13,84 @@ bg_color = Color(0.573158, 0.390079, 0.40651, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqkrj"]
 bg_color = Color(0.528427, 0.379636, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3dd3"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tltp"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04px5"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dlfg"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf3n2"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcw7s"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggkrr"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u44pi"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bl05"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilquo"]
+atlas = ExtResource("3_1g1e6")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5yksu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3dd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tltp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04px5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dlfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf3n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcw7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggkrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u44pi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bl05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilquo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rohnk"]
 size = Vector2(27.6667, 22.1667)
@@ -50,9 +129,15 @@ position = Vector2(598, -103)
 scale = Vector2(6, 6)
 texture = ExtResource("1_2epbx")
 
-[node name="keyboard_area" type="Area2D" parent="Room/PanelContainer2/Desk"]
+[node name="Keyboard_Animation" type="AnimatedSprite2D" parent="Room/PanelContainer2"]
+unique_name_in_owner = true
+position = Vector2(598, -103)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_5yksu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/PanelContainer2/Desk/keyboard_area"]
+[node name="keyboard_area" type="Area2D" parent="Room/PanelContainer2/Keyboard_Animation"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/PanelContainer2/Keyboard_Animation/keyboard_area"]
 position = Vector2(0.333328, -4.41666)
 shape = SubResource("RectangleShape2D_rohnk")
 
@@ -60,6 +145,11 @@ shape = SubResource("RectangleShape2D_rohnk")
 position = Vector2(602, 48)
 scale = Vector2(4, 4)
 texture = ExtResource("2_et4v2")
+
+[node name="Door" type="Sprite2D" parent="Room"]
+position = Vector2(888, 337)
+scale = Vector2(4, 4)
+texture = ExtResource("1_kwckf")
 
 [node name="Outside_Room" type="Panel" parent="."]
 visible = false
@@ -102,4 +192,4 @@ wait_time = 5.5
 unique_name_in_owner = true
 wait_time = 0.5
 
-[connection signal="input_event" from="Room/PanelContainer2/Desk/keyboard_area" to="." method="_on_keyboard_area_input_event"]
+[connection signal="input_event" from="Room/PanelContainer2/Keyboard_Animation/keyboard_area" to="." method="_on_keyboard_area_input_event"]

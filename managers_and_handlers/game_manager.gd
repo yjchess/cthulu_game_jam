@@ -14,12 +14,14 @@ func _ready() -> void:
 	progress_handler.finished_progress.connect(progress_finished)
 	progress_handler.project_enabled.connect(ui_handler.unlock_project)
 	stats_manager.levellable_stat_change.connect(stat_changed)
+	stats_manager.modifier_stat_changed.connect(ui_handler.modifier_stat_changed)
 	stats_manager.auto_study_level_changed.connect(time_handler.auto_study_level_changed)
 	ui_handler.skills_shop_view.connect(skills_shop_view)
 	ui_handler.add_button_pressed.connect(stats_manager.increment_levellable_stat)
 	ui_handler.project_selected.connect(progress_handler.change_project)
 	time_handler.auto_study_tick.connect(auto_study)
 	time_handler.second_passed.connect(ui_handler.process_second)
+	time_handler.hour_passed.connect(hour_passed)
 	time_handler.day_passed.connect(day_ended)
 	time_handler.season_passed.connect(season_ended)
 	stats_manager.events_log.connect(ui_handler.handle_event)
@@ -28,7 +30,9 @@ func _ready() -> void:
 func _on_keyboard_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	
 	if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT):
+		if %Keyboard_Animation.is_playing(): return
 		progress_handler.player_click(stats_manager.get_modifier_stats())
+		%Keyboard_Animation.play()
 
 func auto_study():
 	progress_handler.player_click(stats_manager.get_modifier_stats())
@@ -51,7 +55,12 @@ func stat_changed(stat_index:int, stat_value:int):
 func skills_shop_view():
 	var enabled_add_button_stats = stats_manager.get_enabled_add_stats()
 	ui_handler.display_skills_shop_view(enabled_add_button_stats)
+
+
+func hour_passed(current_hour:int):
+	stats_manager.handle_hour_ended()
 	
+
 func day_ended(current_day:int):
 	stats_manager.handle_day_ended()
 	ui_handler.day_ended(current_day)

@@ -264,7 +264,6 @@ theme_override_constants/separation = 1
 
 [node name="StatsContainer" parent="Modifier_Stats_Margin_Container/Modifier_Stats_Container" instance=ExtResource("1_esj76")]
 layout_mode = 2
-main_content = "How much energy you have. Sleep / rest to gain more."
 
 [node name="StatsContainer2" parent="Modifier_Stats_Margin_Container/Modifier_Stats_Container" instance=ExtResource("1_esj76")]
 layout_mode = 2

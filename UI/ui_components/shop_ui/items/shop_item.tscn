@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr4tc184ol351"]
+[gd_scene load_steps=7 format=3 uid="uid://dr4tc184ol351"]
 
 [ext_resource type="Theme" uid="uid://bupgh13b4cxcv" path="res://main_label_theme.tres" id="1_b5uyx"]
 [ext_resource type="Script" path="res://UI/ui_components/shop_ui/items/shop_item.gd" id="1_rkd3q"]
+[ext_resource type="PackedScene" uid="uid://bxjbql20eju1h" path="res://UI/ui_components/tooltip/custom_tooltip.tscn" id="2_jd152"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyuqj"]
+bg_color = Color(0.129412, 0.156863, 0.509804, 0.823529)
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1yw0"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -19,6 +26,49 @@ border_width_bottom = 1
 custom_minimum_size = Vector2(136, 0)
 theme_override_constants/separation = 0
 script = ExtResource("1_rkd3q")
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Custom_Tooltip" parent="Control" instance=ExtResource("2_jd152")]
+unique_name_in_owner = true
+visible = false
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -83.0
+offset_bottom = 0.0
+grow_vertical = 0
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="Control/Custom_Tooltip"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="ColorRect" type="PanelContainer" parent="Control/Custom_Tooltip/Control"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.0
+offset_right = -10.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_kyuqj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -73,4 +123,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Buy"
 
+[connection signal="mouse_entered" from="PanelContainer/Item" to="." method="_on_item_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/Item" to="." method="_on_item_mouse_exited"]
 [connection signal="pressed" from="PanelContainer3/Buy_Button" to="." method="_on_buy_button_pressed"]

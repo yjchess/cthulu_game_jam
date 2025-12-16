@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjw5iq1k8bh8f"]
+[gd_scene load_steps=3 format=3 uid="uid://cjw5iq1k8bh8f"]
 
 [ext_resource type="Script" path="res://UI/ui_components/shop_ui/shop_view.gd" id="1_4ug2l"]
 [ext_resource type="PackedScene" uid="uid://drsdepoi1qc5w" path="res://UI/ui_components/labels/ui_title.tscn" id="2_q7jay"]
-[ext_resource type="PackedScene" uid="uid://bfwfx6b0qey6m" path="res://UI/ui_components/labels/ui_sub_title.tscn" id="3_lwms0"]
-[ext_resource type="PackedScene" uid="uid://dr4tc184ol351" path="res://UI/ui_components/shop_ui/items/shop_item.tscn" id="4_3lys4"]
 
 [node name="Shop_View" type="VBoxContainer"]
 custom_minimum_size = Vector2(136, 0)
@@ -11,12 +9,4 @@ theme_override_constants/separation = 0
 script = ExtResource("1_4ug2l")
 
 [node name="Shop_Title" parent="." instance=ExtResource("2_q7jay")]
-layout_mode = 2
-
-[node name="Sub_Title" parent="." instance=ExtResource("3_lwms0")]
-visible = false
-layout_mode = 2
-
-[node name="Shop_Item" parent="." instance=ExtResource("4_3lys4")]
-visible = false
 layout_mode = 2

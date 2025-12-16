@@ -1,11 +1,16 @@
 class_name Modifier_Stat extends Node
-var value: float = 100.0
+var value: float = 100.0:
+	set(v):
+		value = v
+		emit_signal("stat_changed", id, v)
+
 var has_max: bool = false
 var max:float = 100.0
 var stat_name:String = "Energy"
 var id:Enums.MODIFIER_STATS = Enums.MODIFIER_STATS.ENERGY
 var optimal_range:Array = [] #only used for temperature
 var has_optimal_range: bool = false
+signal stat_changed
 
 #when the value drops beneath the limit - the project progress is reduced by timesing the limit_effects
 var limits = [20, 30]

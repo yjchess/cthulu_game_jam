@@ -9,7 +9,7 @@ content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
-bg_color = Color(0.129412, 0.156863, 0.509804, 0.705882)
+bg_color = Color(0.129412, 0.156863, 0.509804, 0.823529)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -23,18 +23,13 @@ corner_radius_bottom_left = 10
 [node name="Custom_Tooltip" type="PanelContainer"]
 custom_minimum_size = Vector2(181, 0)
 offset_right = 181.0
-offset_bottom = 159.0
+offset_bottom = 20.0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h3fwm")
 script = ExtResource("1_vct06")
-title = "Energy"
-show_title_icon = null
-show_img = null
-main_content = null
-extra_content = null
-update_editor = null
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 
@@ -48,10 +43,10 @@ layout_mode = 2
 theme = ExtResource("2_5xc2l")
 theme_type_variation = &"HeaderLarge"
 theme_override_constants/line_spacing = 0
-text = "Energy"
 
 [node name="Header_Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 
@@ -64,6 +59,7 @@ size_flags_vertical = 0
 
 [node name="Main_Img" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 texture = ExtResource("3_ty3tk")
@@ -71,13 +67,13 @@ stretch_mode = 5
 
 [node name="Main_Content" type="Label" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(93, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("2_5xc2l")
 theme_type_variation = &"HeaderMedium"
 theme_override_constants/line_spacing = 0
-text = "A couple of short words to describe."
 autowrap_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
@@ -85,7 +81,10 @@ layout_mode = 2
 
 [node name="Extra_Content" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(161, 0)
 layout_mode = 2
+size_flags_vertical = 2
 theme = ExtResource("2_5xc2l")
 theme_type_variation = &"HeaderSmall"
 theme_override_constants/line_spacing = 0
