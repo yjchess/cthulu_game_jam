@@ -1,4 +1,3 @@
-@tool
 class_name Clothes_Button_Container extends VBoxContainer
 
 @export var item_id:Items_DB.ITEM
@@ -7,17 +6,19 @@ class_name Clothes_Button_Container extends VBoxContainer
 		clothing_title = v
 		$clothing_title.text = clothing_title
 
-@export var clothing_icon:String = "None_Icon":
+var clothing_icon:String = "res://assets/None_Icon.png":
 	set(v):
 		clothing_icon = v
-		var path_base = "res://assets/"
-		if clothing_icon != "None_Icon":
-			path_base += "clothing_icons/"
-			
-		$Clothes_Button.texture_normal = load(path_base + clothing_icon +".png" )
+		$Clothes_Button.texture_normal = load(clothing_icon)
 
 func _ready():
+	var item = Items_DB.get_item(item_id)
 	%Custom_Tooltip.get_content_from_item(item_id)
+	if item == null: return
+	if not FileAccess.file_exists(item.path): return
+	
+	clothing_icon = item.path
+	
 
 
 func _on_clothes_button_mouse_entered() -> void:

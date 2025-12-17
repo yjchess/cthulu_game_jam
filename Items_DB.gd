@@ -89,7 +89,9 @@ class Item:
 	var item_name: String
 	var item_price: float
 	var owned: bool
-	var base_path: String = "res://assets/"
+	var path: String = ""
+	var main_description: String = ""
+	var extra_description: String = ""
 	#main description = short description w.out much info
 	#extra description = slighly more info + hints towards effects or lore
 	#programmed_description = stat info
@@ -100,45 +102,45 @@ class Item:
 		"programmed_description": "",
 	}
 	
-	func _init(item_id:ITEM, item_name:String, item_price:float, main_description:String = "", owned:bool = false):
+	func _init(item_id:ITEM, item_name:String, item_price:float, main_description:String = "", extra_description:String = "", owned:bool = false):
 		self.item_id = item_id
 		var category = Items_DB.get_category_from_item_id(item_id)
-		base_path = Items_DB.get_base_path_from_category(category)
-		print(base_path)
+		path = Items_DB.get_path_from_category(category, item_id)
 		
 		self.item_name = item_name
 		self.item_price = item_price
-		descriptions.main_description = main_description
+		self.main_description = main_description
+		self.extra_description = extra_description
 		self.owned = owned
 		
 
 static var items =[
-	Item.new(ITEM.BEANIE                 , "Beanie"                , 6.00   , "A Beanie to keep your noggin warm!"                                              ,),
-	Item.new(ITEM.SUIT                   , "Suit"                  , 0.00   , "A flashy business type suit. It doesn't quite 'suit' you."                       ,true),
-	Item.new(ITEM.WHITE_SHIRT            , "White Shirt"           , 0.00   , "A very formal, posh, tight white shirt."                                         ,true),
-	Item.new(ITEM.SUIT_PANTS             , "Suit Pants"            , 0.00   , "I didn't know that suit's could pant!"                                           ,true),
-	Item.new(ITEM.FORMAL_SHOES           , "Formal Shoes"          , 0.00   , "Rich people shoes with Oxfords not Brogues."                                     ,true),
-	Item.new(ITEM.DOUBLE_STACKED_TABLES  , "2x Stacked Table"      , 0.00   , "Two unrelated tables stacked on top of each other."                              ,true),
-	Item.new(ITEM.UNNAMED_OFFICE_CHAIR   , "Office chair"          , 0.00   , "Run of the mill, cheap, mass produced office chair."                             ,true),
-	Item.new(ITEM.UNNAMED_EXEC_CHAIR     , "Executive chair"       , 150.00 , "Run of the mill, mediocre, mass produced executive chair."                       ,),
-	Item.new(ITEM.MEMBRANE_KEYBOARD      , "Membrane kb"           , 0.00   , "Squishy, cheap - advertised as 'gaming' keyboard."                               ,true),
-	Item.new(ITEM.MECHANICAL_KEYBOARD    , "Mechanical kb"         , 150.00 , "Mediocre keyboard with a decent Thock."                                          ,),
-	Item.new(ITEM.OFFICE_MOUSE           , "Office Mouse"          , 0.00   , "Random Office Mouse from the 1900s."                                             ,true),
-	Item.new(ITEM.GAMING_MOUSE           , "Gaming Mouse"          , 150.00 , "Mouse by the brand name: Rezar."                                                 ,),
-	Item.new(ITEM.STANDARD_DUAL_MONITORS , "Standard 2x screens"   , 0.00   , "Dual monitors with some wear and tear."                                          ,true),
-	Item.new(ITEM.PREMIUM_DUAL_MONITORS  , "Premium 2x screens"    , 150.00 , "Wider, higher-resolution, more gamery screens."                                  ,),
-	Item.new(ITEM.CHEAP_TRIPLE_MONITORS  , "Cheap 3x screens"      , 210.00 , "Triple the screens... but not triple the efficiency :("                          ,),
-	Item.new(ITEM.STANDARD_BASES         , "Standard bases"        , 0.00   , "Crooked Bases from an accidental drop."                                          , true),
-	Item.new(ITEM.CHEAP_DESK_MOUNT       , "Cheap Desk Mount"      , 40.00  , "Also known as a monitor arm - although I thought they were 'armless'."           , ),
-	Item.new(ITEM.CHEAP_WALL_MOUNT       , "Cheap Wall Mount"      , 30.00  , "A way of attaching your monitor to the wall."                                    , ),
-	Item.new(ITEM.CHEAP_GRAPHICS_TABLET  , "Cheap Graphics Tablet" , 120.00 , "A beginner's graphics tablet."                                                   , ),
-	Item.new(ITEM.GAME_DEV_MAGAZINE      , "Game Dev Mag."         , 30.00  , "AE's guide to scamming consumers!"                                               , ),
-	Item.new(ITEM.POTTED_PLANT           , "Plant"                 , 10.00  , "More specifically, an Aloe Vera Plant."                                          , ),
-	Item.new(ITEM.BATTLEMON_PLUSH        , "Battlemon plush"       , 80.00  , "It looks like a Mimmikyu, but due to international copyright laws, it's not!"    , ),
-	Item.new(ITEM.DUSTBIN                , "Dustbin"               , 5.00   , "Garbage goes in, garbage comes out."                                             , ),
-	Item.new(ITEM.SCI_FI_POSTER          , "Sci Fi Poster"         , 5.00   , "Poster of the hit tabletop wargame: 401K"                                        , ),
-	Item.new(ITEM.MOVE_OUT               , "Move Out"              , 1250.00, "Finally... freedom. Time to leave the old door behind and explore new ventures." , ),
-	Item.new(ITEM.MOVE_UPSTAIRS          , "Move Upstairs"         , 0.00   , "", ),
+	Item.new(ITEM.BEANIE                 , "Beanie"                , 6.00   , "A Beanie to keep your noggin warm!"                                              , "I like it cos it's black, like my taste in humour!",),
+	Item.new(ITEM.SUIT                   , "Suit"                  , 0.00   , "A flashy business type suit. It doesn't quite 'suit' you."                       , "It's not super comfortable to be in, but it does make you feel more professional.",true),
+	Item.new(ITEM.WHITE_SHIRT            , "White Shirt"           , 0.00   , "A very formal, posh, tight white shirt."                                         , "A remnant from your school days, it's a little tight now that you've grown up a lot more.",true),
+	Item.new(ITEM.SUIT_PANTS             , "Suit Pants"            , 0.00   , "I didn't know that suit's could pant!"                                           , "Not very comfortable; it's hard to find comfortable trousers with your physical condition",true),
+	Item.new(ITEM.FORMAL_SHOES           , "Formal Shoes"          , 0.00   , "Rich people shoes with Oxfords not Brogues."                                     , "It's a little strange to wear shoes indoors no?",true),
+	Item.new(ITEM.DOUBLE_STACKED_TABLES  , "2x Stacked Table"      , 0.00   , "Two unrelated tables stacked on top of each other."                              , "Found these out on the street. They're decent quality, but not exactly appropriate for the job.",true),
+	Item.new(ITEM.UNNAMED_OFFICE_CHAIR   , "Office chair"          , 0.00   , "Run of the mill, cheap, mass produced office chair."                             , "Scavenged frrom a business that was shutting down. However, it's starting to stiffen up which is definitely not good for your joints.",true),
+	Item.new(ITEM.UNNAMED_EXEC_CHAIR     , "Executive chair"       , 150.00 , "Run of the mill, mediocre, mass produced executive chair."                       , "A lot more comfortable than your last chair, that's for sure! And it's discounted because you know the seller!",),
+	Item.new(ITEM.MEMBRANE_KEYBOARD      , "Membrane kb"           , 0.00   , "Squishy, cheap - advertised as 'gaming' keyboard."                               , "One of the cheapest keyboards there are. Doesn't really affect your work but it doesn't help it either.",true),
+	Item.new(ITEM.MECHANICAL_KEYBOARD    , "Mechanical kb"         , 150.00 , "Mediocre keyboard with a decent Thock."                                          , "A better keyboard that will help somewhat with efficiency.",),
+	Item.new(ITEM.OFFICE_MOUSE           , "Office Mouse"          , 0.00   , "Random Office Mouse from the 1900s."                                             , "One of the mice that your dad was given at a programmer conference. It even has a rubber ball in the bottom.",true),
+	Item.new(ITEM.GAMING_MOUSE           , "Gaming Mouse"          , 150.00 , "Mouse by the brand name: Rezar."                                                 , "Some say brands are overhyped, others say they provide legitimate benefits.",),
+	Item.new(ITEM.STANDARD_DUAL_MONITORS , "Standard 2x screens"   , 0.00   , "Dual monitors with some wear and tear."                                          , "The same monitors you've had since 2013, perhaps it's time to get an upgrade.",true),
+	Item.new(ITEM.PREMIUM_DUAL_MONITORS  , "Premium 2x screens"    , 150.00 , "Wider, higher-resolution, more gamery screens."                                  , "Bigger, faster, cooler - just seeing these screens makes you happier.",),
+	Item.new(ITEM.CHEAP_TRIPLE_MONITORS  , "Cheap 3x screens"      , 210.00 , "Triple the screens... but not triple the efficiency :("                          , "Three screens does mean you are able to complete your tasks slightly faster.",),
+	Item.new(ITEM.STANDARD_BASES         , "Standard bases"        , 0.00   , "Crooked Bases from an accidental drop."                                          , "Your father accidentally dropped these whilst moving them to your new room. Though it's only aesthetic, the knowledge that they are crooked forever burns in the back of your mind. ", true),
+	Item.new(ITEM.CHEAP_DESK_MOUNT       , "Cheap Desk Mount"      , 40.00  , "Also known as a monitor arm - although I thought they were 'armless'."           , "Although a cheap upgrade, these arms give more space on your desk and increase efficiency.", ),
+	Item.new(ITEM.CHEAP_WALL_MOUNT       , "Cheap Wall Mount"      , 30.00  , "A way of attaching your monitor to the wall."                                    , "Perfect for swivelling the monitor towards you whilst you lay down on the sofa to watch a movie!", ),
+	Item.new(ITEM.CHEAP_GRAPHICS_TABLET  , "Cheap Graphics Tablet" , 120.00 , "A beginner's graphics tablet."                                                   , "Contains the remnants of the hopes and dreams of you becoming a 3d artist, crushed by the reality of your laziness.", ),
+	Item.new(ITEM.GAME_DEV_MAGAZINE      , "Game Dev Mag."         , 30.00  , "AE's guide to scamming consumers!"                                               , "Tips and tricks to making games. Hopefully boosts your productivity.", ),
+	Item.new(ITEM.POTTED_PLANT           , "Plant"                 , 10.00  , "More specifically, an Aloe Vera Plant."                                          , "A plant that's nice to look at and has health benefits too!", ),
+	Item.new(ITEM.BATTLEMON_PLUSH        , "Battlemon plush"       , 80.00  , "It looks like a Mimmikyu, but due to international copyright laws, it's not!"    , "One of your favourite Battlemons. The other being the psychic cat.", ),
+	Item.new(ITEM.DUSTBIN                , "Dustbin"               , 5.00   , "Garbage goes in, garbage comes out."                                             , "Hopefully this will help you clean up the piles of rubbish that appear in your room.", ),
+	Item.new(ITEM.SCI_FI_POSTER          , "Sci Fi Poster"         , 5.00   , "Poster of the hit tabletop wargame: 401K"                                        , "Expensive, for no reason.", ),
+	Item.new(ITEM.MOVE_OUT               , "Move Out"              , 1250.00, "Finally... freedom. Time to leave the old door behind and explore new ventures." , "Proceed to the next stage.", ),
+	Item.new(ITEM.MOVE_UPSTAIRS          , "Move Upstairs"         , 0.00   , ""                                                                                , "", ),
 	
 ]
 
@@ -241,8 +243,14 @@ static func get_base_path_from_category(category:SHOP_CATEGORIES):
 			base_path += "desk_icons/"
 		SHOP_CATEGORIES.DESKTOP_ITEMS, SHOP_CATEGORIES.ROOM_DECORATIONS:
 			base_path += "other_icons/"
-	var final_directory:String = Utilities.convert_enum_to_string(SHOP_CATEGORIES, category)
-	final_directory = final_directory.replace(" ", "_")
-	final_directory = final_directory.to_lower()
+		SHOP_CATEGORIES.DOORS:
+			base_path += "door_icons/"
+			return base_path
+	var final_directory:String = Utilities.get_path_component_from_enum(SHOP_CATEGORIES, category)
 	base_path += final_directory + "/"
 	return base_path
+
+static func get_path_from_category(category:SHOP_CATEGORIES, item_id:ITEM):
+	var path = get_base_path_from_category(category)
+	path += Utilities.get_path_component_from_enum(Items_DB.ITEM, item_id) + ".png"
+	return path

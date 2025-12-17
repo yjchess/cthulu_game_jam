@@ -202,7 +202,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_hs7mq")
 
 [node name="Current_Clothing_View" type="VBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -221,13 +220,11 @@ layout_mode = 2
 layout_mode = 2
 item_id = 10
 clothing_title = "Body 1"
-clothing_icon = "white_shirt"
 
 [node name="Clothes_Button_Container2" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View/HBoxContainer2" instance=ExtResource("5_hbvwn")]
 layout_mode = 2
 item_id = 20
 clothing_title = "Body 2"
-clothing_icon = "suit"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Clothing_View/Current_Clothing_View"]
 layout_mode = 2
@@ -384,8 +381,7 @@ id = 4
 
 [node name="Project_Point_Skills" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(550, 400)
+custom_minimum_size = Vector2(580, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -424,6 +420,14 @@ size_flags_vertical = 0
 theme = ExtResource("1_wf5di")
 text = "X"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Project_Point_Skills/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Project points can be earned through completing certain projects like: \"Hobby Site\" or \"Hobby Game\" and \"Website\" or \"Game\". These can be exchanged for certain benefits.
+"
+fit_content = true
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Project_Point_Skills/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -434,21 +438,210 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
-bbcode_enabled = true
-text = "Project points can be earned through completing certain projects like: \"Hobby Site\" or \"Hobby Game\" and \"Website\" or \"Game\". These can be exchanged for certain benefits.
-"
-fit_content = true
-
 [node name="PanelContainer" type="PanelContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_sp1xt")
 
-[node name="GridContainer" type="GridContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = " No Requirement Skills:"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Project Manager"
+description = "Increase project points per completed project."
+project_point_cost = 1
+
+[node name="Button2" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Clean Soul"
+description = "Automatically pick up trash"
+project_point_cost = 5
+
+[node name="Button3" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Event Manager"
+description = "Increase chances of positive events."
+project_point_cost = 5
+
+[node name="Button4" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Item Boost"
+description = "Increases stats given by items by 1"
+project_point_cost = 1
+
+[node name="Button5" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Level Addict"
+description = "Increase levels gained per project."
+project_point_cost = 5
+
+[node name="Button6" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Door Spring"
+description = "Automatically closes door after a while."
+project_point_cost = 1
+
+[node name="Button7" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Sleeper Build"
+description = "Better energy stats when sleeping etc."
+project_point_cost = 5
+
+[node name="Button8" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Survivor"
+description = "Reduce modifier stats lost over time"
+project_point_cost = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Gym Member"
+description = "Unlock Gym"
+project_point_cost = 1
+has_max = true
+
+[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Gym Rat"
+description = "Increases Benefits from gym, decreases chances of accidents. "
+project_point_cost = 1
+
+[node name="Button3" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Minigame"
+description = "Unlocks a minigame"
+project_point_cost = 5
+
+[node name="Label2" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = " Tree Hierarchy Skills:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Researcher"
+description = "Research her? I hardly know her!"
+project_point_cost = 1
+has_max = true
+
+[node name="Button2" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Analyser"
+description = "Analyse her? I hardly know her!"
+project_point_cost = 1
+has_max = true
+
+[node name="Label2" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Researcher 2"
+description = "Learn More about items!"
+project_point_cost = 5
+has_max = true
+
+[node name="Button2" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Analyser 2"
+description = "Learn even more about your modifier stats"
+project_point_cost = 5
+has_max = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Auto - outfit"
+description = "Automatically equip best owned items."
+project_point_cost = 10
+has_max = true
+
+[node name="Button2" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Online Shopper"
+description = "Get a discount on all items!"
+project_point_cost = 10
+has_max = true
+max = 4
+
+[node name="Button3" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Efficiency"
+description = "Increase rate of progress."
+project_point_cost = 10
+
+[node name="Button4" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+skill_name = "Productivity"
+description = "Increase amount of progress."
+project_point_cost = 10
+
+[node name="GridContainer" type="GridContainer" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/v_separation = 50
 columns = 5
 
 [node name="Spacer" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
@@ -457,15 +650,18 @@ layout_mode = 2
 [node name="Spacer2" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Button" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer" instance=ExtResource("2_w1aaw")]
-layout_mode = 2
-size_flags_horizontal = 6
-
 [node name="Spacer3" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
 layout_mode = 2
 
 [node name="Spacer4" type="Label" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer"]
 layout_mode = 2
+
+[node name="Button2" parent="Project_Point_Skills/VBoxContainer/ScrollContainer/VBoxContainer/PanelContainer/GridContainer" instance=ExtResource("2_w1aaw")]
+layout_mode = 2
+size_flags_horizontal = 6
+skill_name = "Researcher 2"
+description = "Learn More about items!"
+project_point_cost = 5
 
 [connection signal="pressed" from="Upgrades_View_Handler/Upgrades_View/ScrollContainer/MarginContainer/Upgrades_View_Container/Skills_View/Other_Skills" to="." method="_on_other_skills_pressed"]
 [connection signal="pressed" from="Project_Point_Skills/VBoxContainer/HBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]

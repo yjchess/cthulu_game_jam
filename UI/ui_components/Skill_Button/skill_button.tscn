@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cr03co5841jkt"]
+[gd_scene load_steps=5 format=3 uid="uid://cr03co5841jkt"]
 
 [ext_resource type="Texture2D" uid="uid://b8ms5dxymncwf" path="res://assets/skill_icons/skill_icon_base.png" id="1_lo84i"]
+[ext_resource type="Script" path="res://UI/ui_components/Skill_Button/skill_button.gd" id="2_tcwl0"]
+[ext_resource type="Theme" uid="uid://bupgh13b4cxcv" path="res://main_label_theme.tres" id="3_ae6tw"]
+[ext_resource type="PackedScene" uid="uid://bxjbql20eju1h" path="res://UI/ui_components/tooltip/custom_tooltip.tscn" id="3_u8nwx"]
 
 [node name="skill_button" type="TextureButton"]
 texture_normal = ExtResource("1_lo84i")
+script = ExtResource("2_tcwl0")
 
-[node name="Label" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(64, 0)
+[node name="skill_name" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -14,11 +19,64 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -32.0
-offset_top = -23.0
-offset_right = 32.0
-offset_bottom = 23.0
+offset_top = -24.5
+offset_right = 28.0
+offset_bottom = 18.5
 grow_horizontal = 2
 grow_vertical = 2
-bbcode_enabled = true
-text = "[center]Skill Name[/center]"
-fit_content = true
+theme = ExtResource("3_ae6tw")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 10
+text = "Skill Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="skill_lvl" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ae6tw")
+theme_type_variation = &"HeaderMedium"
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Custom_Tooltip" parent="Control" instance=ExtResource("3_u8nwx")]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -50.5
+offset_bottom = 50.5
+grow_vertical = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

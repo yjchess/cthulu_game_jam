@@ -77,7 +77,6 @@ anchor_bottom = 1.0
 offset_top = -135.0
 offset_bottom = 0.0
 grow_vertical = 0
-size_flags_vertical = 0
 title = "Energy"
 img_path = "res://assets/None_Icon.png"
 main_content = "How much energy you have. Sleep / rest to gain more."

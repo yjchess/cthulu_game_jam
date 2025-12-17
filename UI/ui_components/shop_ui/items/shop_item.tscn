@@ -44,7 +44,6 @@ anchor_bottom = 1.0
 offset_top = -83.0
 offset_bottom = 0.0
 grow_vertical = 0
-size_flags_vertical = 0
 
 [node name="Control" type="Control" parent="Control/Custom_Tooltip"]
 layout_mode = 2

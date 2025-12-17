@@ -8,15 +8,12 @@ func setup(item_id:int, item_name:String, item_price:float, item_tooltips:Dictio
 	self.item_id = item_id
 	%Item.text = "[center]" + item_name + "[/center]"
 	%Price.text = "£"+str(item_price)
-	
-	%Custom_Tooltip.title = item_name
-	%Custom_Tooltip.main_content = item_tooltips.main_description
-	%Custom_Tooltip.extra_content = "Provides boosts"
-	%Custom_Tooltip.update_content()
+
+func _ready():
+	%Custom_Tooltip.get_content_from_item(item_id)
 
 
 func update_tooltip_global_positions():
-	%Custom_Tooltip.update_content()
 	var current_global_position = %Control.global_position - Vector2(%Custom_Tooltip.size.x+15, %Custom_Tooltip.size.y/2 + self.size.y/2)
 	%Custom_Tooltip.top_level = true
 	%Custom_Tooltip.global_position = current_global_position

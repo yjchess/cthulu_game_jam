@@ -3,17 +3,15 @@
 @export var title_icon:String = ""
 @export var show_title_icon:bool = false
 @export var img_path:String = ""
-@export var show_img:bool = false
+@export var show_img:bool = false:
+	set(v):
+		show_img = v
+		if v == true: %Main_Img.show()
+		self.size.x += 64
 @export var main_content:String = ""
 @export var extra_content:String = ""
-@export var update_editor:bool = false:
-	set(v):
-		update_content()
 
-func _ready():
-	size_flags_vertical = SizeFlags.SIZE_SHRINK_BEGIN
-	update_content()
-	
+
 
 func update_content():
 	%Header.text = title
@@ -36,15 +34,21 @@ func update_content():
 	else:
 		%Extra_Content.hide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func get_content_from_item(item_id:Items_DB.ITEM):
 	if item_id == Items_DB.ITEM.NONE:
 		%Header.text = "No Item"
 		%Main_Content.text = "Buy Items from the shop"
 		return
-	var item = Items_DB.get_item(item_id)
+		
+	var item = await Items_DB.get_item(item_id)
 	%Header.text = item.item_name
-	%Main_Content.text = item.descriptions.main_description
+	%Main_Content.text = item.main_description
+	print(item.extra_description)
+	if item.extra_description != "":
+		%Extra_Content.show()
+		%Extra_Content.text = item.extra_description
+	
+	if item.path == "" or not FileAccess.file_exists(item.path): return
+	%Main_Img.texture = load(item.path)
+	show_img = true

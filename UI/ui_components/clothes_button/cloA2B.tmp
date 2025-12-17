@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtvilhi5smc7f"]
+
+[ext_resource type="Script" path="res://UI/ui_components/clothes_button/clothes_button.gd" id="1_8jl12"]
+[ext_resource type="Texture2D" uid="uid://dml74r8umkoxp" path="res://assets/None_Icon.png" id="2_tqne0"]
+[ext_resource type="PackedScene" uid="uid://bxjbql20eju1h" path="res://UI/ui_components/tooltip/custom_tooltip.tscn" id="3_iufgk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egclt"]
+bg_color = Color(0.129412, 0.156863, 0.509804, 0.823529)
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Clothes_Button_Container" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 6
+script = ExtResource("1_8jl12")
+
+[node name="clothing_title" type="Label" parent="."]
+clip_contents = true
+layout_mode = 2
+text = "Head"
+horizontal_alignment = 1
+
+[node name="Clothes_Button" type="TextureButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_tqne0")
+
+[node name="Control" type="Control" parent="Clothes_Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="Custom_Tooltip" parent="Clothes_Button/Control" instance=ExtResource("3_iufgk")]
+unique_name_in_owner = true
+visible = false
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -41.5
+offset_right = 191.0
+offset_bottom = 41.5
+grow_vertical = 2
+title = "None_Icon"
+
+[node name="Control" type="Control" parent="Clothes_Button/Control/Custom_Tooltip"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="ColorRect" type="PanelContainer" parent="Clothes_Button/Control/Custom_Tooltip/Control"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.0
+offset_right = -10.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_egclt")
+
+[connection signal="mouse_entered" from="Clothes_Button" to="." method="_on_clothes_button_mouse_entered"]
+[connection signal="mouse_exited" from="Clothes_Button" to="." method="_on_clothes_button_mouse_exited"]
