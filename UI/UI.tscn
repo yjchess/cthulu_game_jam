@@ -117,6 +117,7 @@ offset_left = -183.0
 offset_top = -210.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_r0ibf")
 
 [node name="Event_Logs_View" type="VBoxContainer" parent="Events Log"]

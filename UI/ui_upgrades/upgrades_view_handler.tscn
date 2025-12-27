@@ -381,6 +381,7 @@ id = 4
 
 [node name="Project_Point_Skills" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(580, 400)
 layout_mode = 1
 anchors_preset = 8

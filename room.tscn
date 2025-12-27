@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cfpfq43rqh1is"]
+[gd_scene load_steps=24 format=3 uid="uid://cfpfq43rqh1is"]
 
 [ext_resource type="Texture2D" uid="uid://3oa8bxq10kvi" path="res://assets/desk.png" id="1_2epbx"]
 [ext_resource type="Texture2D" uid="uid://o4bo4ltm85hs" path="res://assets/door.png" id="1_kwckf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cfmwjxnw2vos0" path="res://assets/chair.png" id="2_et4v2"]
 [ext_resource type="Texture2D" uid="uid://brkak6ydkskua" path="res://assets/dual_monitors.png" id="3_1g1e6"]
 [ext_resource type="Script" path="res://managers_and_handlers/Time_Handler.gd" id="6_mx53e"]
+[ext_resource type="PackedScene" uid="uid://dgqnvfbb0p5q" path="res://assets/cutscene_events/cat.tscn" id="8_nsork"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbagv"]
 bg_color = Color(0.573158, 0.390079, 0.40651, 1)
@@ -110,6 +111,7 @@ theme_override_constants/separation = 0
 [node name="PanelContainer" type="PanelContainer" parent="Room"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_pbagv")
 
 [node name="PanelContainer3" type="PanelContainer" parent="Room"]
@@ -156,6 +158,7 @@ visible = false
 custom_minimum_size = Vector2(1200, 650)
 offset_right = 1100.0
 offset_bottom = 650.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_to7wh")
 
 [node name="CenterContainer" type="CenterContainer" parent="Outside_Room"]
@@ -191,5 +194,19 @@ wait_time = 5.5
 [node name="day_timer" type="Timer" parent="Time_Handler"]
 unique_name_in_owner = true
 wait_time = 0.5
+
+[node name="Animations" type="Node" parent="."]
+
+[node name="Cat" parent="Animations" node_paths=PackedStringArray("marker_two") instance=ExtResource("8_nsork")]
+position = Vector2(318, 588)
+marker_two = NodePath("../Marker2D2")
+
+[node name="Marker2D" type="Marker2D" parent="Animations"]
+position = Vector2(318, 588)
+scale = Vector2(2, 2)
+
+[node name="Marker2D2" type="Marker2D" parent="Animations"]
+position = Vector2(898, 588)
+scale = Vector2(2, 2)
 
 [connection signal="input_event" from="Room/PanelContainer2/Keyboard_Animation/keyboard_area" to="." method="_on_keyboard_area_input_event"]

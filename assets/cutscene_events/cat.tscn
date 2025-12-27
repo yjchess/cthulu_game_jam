@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgqnvfbb0p5q"]
+
+[ext_resource type="Script" path="res://assets/cutscene_events/cat.gd" id="1_lsw78"]
+[ext_resource type="Texture2D" uid="uid://biqkom133loee" path="res://assets/cutscene_events/cat.png" id="2_dyfpr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt800"]
+atlas = ExtResource("2_dyfpr")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv56j"]
+atlas = ExtResource("2_dyfpr")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1km2"]
+atlas = ExtResource("2_dyfpr")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3fyt"]
+atlas = ExtResource("2_dyfpr")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffy6e"]
+atlas = ExtResource("2_dyfpr")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib48v"]
+atlas = ExtResource("2_dyfpr")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qt121"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt800")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv56j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1km2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3fyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffy6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib48v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsx0i"]
+size = Vector2(49, 36)
+
+[node name="Cat" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_lsw78")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qt121")
+frame_progress = 0.53911
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+position = Vector2(1.5, 8)
+shape = SubResource("RectangleShape2D_xsx0i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+top_level = true
+offset_left = 244.0
+offset_top = 363.0
+offset_right = 359.0
+offset_bottom = 394.0
+mouse_filter = 1
+text = "cat animation
+"
+
+[connection signal="input_event" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="start_animation"]
